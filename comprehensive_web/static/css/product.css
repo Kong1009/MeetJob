@@ -1,0 +1,55 @@
+.myshop_div{
+	display: flex;
+	width: 80%;
+	margin:10px auto;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: center;
+}
+
+.mycard{
+	margin: 15px;
+
+}
+
+.shop_select{
+	width: 80%;
+	margin:30px auto;
+	font-size: 20px;
+
+
+}
+
+
+.shop_select label{
+	width: 120px;
+}
+
+.card-price{
+	font-size: 30px;
+	font-weight: bold;
+	color: red;
+}
+
+.no-goods-msg{
+	width: 90%;
+	margin:0 auto;
+	color: red;
+	text-align: center;
+}
+
+.product-title{
+	width: 264px;
+	height: 47px;
+	margin: 10px 0;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+.product-info{
+	display: -webkit-box;
+	height: 75px;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+KH | 綜合商店
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/product.css">
+{% endblock %}
+
+{% block content %}
+
+
+	<form action="" method="get" class="shop_select">
+		<div>
+			<label>商品關鍵字：</label>
+			<input type="text" name='p'>
+			<br><br>
+
+			<label>價格區間：</label>
+			<input type="text" name="priceS"> ~ <input type="text" name="priceE">
+			<br><br>
+			
+		</div>
+
+		<div>
+			<label for="item">商品種類</label>
+			<select id="item" name="item" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+				<option value='0' selected>預設</option>
+				<option value='1'>家電</option>
+				<option value='2'>手機</option>
+				<option value="3">衣服</option>
+				<option value="4">電腦周邊</option>
+				<option value="5">外套</option>
+				<option value="6">玩具</option>
+				<option value="7">公仔</option>
+				<option value="8">生活用品</option>
+			</select>
+		</div>
+
+		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+		  <button class="btn btn-primary" type="submit">商品查詢</button>
+		</div>
+
+
+	</form>
+
+	<br>
+
+	<div class="no-goods-msg">
+		<h1>{{ msg }}</h1>
+	</div>
+	<div class="myshop_div">
+		{% for row in data %}
+		<div class="card mycard" style="width: 18rem;">
+					<div>
+			  <img src="{{ row.img_link }}" class="card-img-top" alt="...">
+			  <div class="card-body">
+			    <h5 class="card-title product-title">{{ row.subject }}</h5>
+			    <p class="card-text product-info">{{ row.info }}</p>
+			    <p class="card-text card-price">NT$ {{ row.price }}</p>
+			    <a href="{{ row.link }}" target="_blank" class="btn btn-primary">前往賣場</a>
+			    <a href="/addtocart/add/{{ row.id }}" class="btn btn-primary">加入購物車</a>
+			  </div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="up-down">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination justify-content-center">
+		    <li class="page-item">
+	      	{% if data.has_previous %}
+		      <a class="page-link" href="?page={{ data.previous_page_number }}" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		     {% endif %}
+		    </li>
+		    {% for i in nums %}
+		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		    {% endfor %}
+		    <li class="page-item">
+		    	{% if data.has_next %}
+		      <a class="page-link" href="?page={{ data.next_page_number }}">下一頁</a>
+		    	{% endif %}
+		    </li>
+		    <li class="page-item disabled"><a class="page-link">共{{ venues.paginator.num_pages }}頁 第{{ venues.number }}頁</a></li>
+		  </ul>
+		</nav>
+	</div>
+
+	
+{% endblock %}

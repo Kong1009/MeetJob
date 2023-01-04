@@ -1,0 +1,186 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.big-banner{
+	width: 18%;
+
+	overflow: hidden;
+
+}
+
+.big-banner img{
+	width: 100%;
+
+}
+
+.banner-div{
+	width: 100%;
+	background-color: #000;
+}
+
+.banner, .img li{
+	width: 500px;
+	height: 350px;
+	margin: 0px auto;
+	/*border: 1px solid #ccc;*/
+	position: relative; /* position定位  */
+	overflow: hidden; /* overflow超過 就隱藏 */
+}
+
+.banner .img{
+	width: 4500px;
+	position: absolute;
+	padding: 0;
+	left: 0px;
+	top: 0px;
+}
+
+.banner .img img{
+	/* 圖片寬高要與banner一樣 */
+	width: 500px;
+	height: 350px;
+}
+
+.banner .img li{
+	float: left;
+	margin: auto;
+}
+
+
+
+.banner .btn{
+	width: 30px;
+	height: 50px;
+	background-color: #ccc;
+
+	/* 透明度寫法 */
+	opacity: 0.5;
+	filter: alpha(opacity: 0.5);
+	position: absolute;
+	top: 50%;
+	margin-top: -25px;
+
+	/* 字型顏色 */
+	cursor: pointer; /* cursor 是用來改變滑鼠游標的形狀   pointer手指去點的圖示 */
+	text-align: center;
+	line-height: 50px;
+	font-size: 50px;
+	color: #fff;
+	display: none;
+}
+
+.banner .left{
+	left: 0px;
+}
+
+.banner .right{
+	right: 0px;
+}
+
+/* .banner 滑過時  .btn會觸發 */
+.banner:hover .btn{
+	display: block;
+}
+
+.watch_more{
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	margin: 50px auto 15px auto;
+	flex-wrap: wrap;
+	align-items: center;
+	border-bottom: 2px solid #000;
+	padding-bottom: 5px;
+}
+
+.watch_more p{
+	margin:0;
+}
+
+.watch_title{
+  display: flex;
+  
+}
+
+.watch_title p{
+	margin: auto;
+}
+
+.watch_img{
+	width: 50px;
+}
+
+.watch_img img{
+	width: 100%;
+}
+
+.watch_more p{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.watch_more_link{
+	font-size: 20px;
+	text-decoration: none;
+}
+
+.random-image{
+	width: 100%;
+}
+
+.random-program{
+	display: flex;
+	width: 68%;
+	margin:0 auto;
+	justify-content: space-around;
+	align-items: center;
+	padding: 0 0 50px 0;
+}
+
+.c-content{
+	width: 15%;
+	margin:0 15px;
+}
+
+
+
+.random-image img{
+	width: 100%;
+}
+
+
+
+.c-content a{
+	position: static;
+	display: inline-block;
+	text-decoration: none;
+	display:block;
+
+	/*width: 100%;*/
+
+}
+
+/*.c-content a:hover::before{
+	position:absolute;
+	top: 50px;
+	content: 'test';
+}*/
+
+.random-content{
+	width: 100%;
+}
+
+.c-title{
+	font-size: 26px;
+	margin: 0;
+	/*height: 30px;*/
+	white-space: nowrap; /* 不換行 */
+    text-overflow: ellipsis; /* 文字超出範圍顯示... */
+    overflow: hidden;
+
+
+}
+

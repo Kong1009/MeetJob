@@ -1,0 +1,173 @@
+body{
+	font-family: Arial, 微軟正黑體;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	list-style: none;
+	background: url(https://i2.bahamut.com.tw/html_bg.gif);
+	/*background: url('/static/images/background-img.png');*/
+	/*background-size: cover;*/
+	/*background-repeat: no-repeat;*/
+	/*background-position: center;*/
+	
+	/*background: no-repeat;	*/
+	
+}
+
+
+#header{
+	width: 80%;
+	height: 100px;
+	margin:0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+}
+
+#logo{
+	display: inline-block;
+	margin: 22px 0;
+	width: 120px
+}
+
+#logo img{
+	width: 100%;
+}
+
+#member_login{
+	display:flex;
+	align-items: center;
+}
+
+
+
+#member_login a{
+	margin:0 10px;
+	font-size: 24px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.member-icon{
+	width: 45px;
+	border: 2px solid;
+	border-radius: 50%;
+	background-color: #fff;
+	overflow: hidden;
+}
+
+.member-icon img{
+	width: 100%;
+}
+
+.base-menu{
+	background-color: #FFDC7B;
+	width: 100%;
+	height: 50px;
+	color: #fff;
+
+}
+
+#m_login{
+	width: 20px;
+	height: 20px;
+}
+
+
+
+#menu-list{
+	width: 1200px;
+	height: 30px;
+	margin:0 auto;
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: space-around;
+}
+
+#menu-list li{
+	position: relative;
+	padding: 5px 0;
+}
+
+#menu-list a{
+	text-decoration: none;
+	font-size: 20px;
+	font-family: bold;
+	font-weight: bold;
+	color: #000;
+	padding: 8px;
+}
+
+#menu-list a:hover{
+	/*background: #F50F00;*/
+	border-radius: 5px;
+	color: #fff;
+
+}
+
+.submenu {
+	position: absolute;
+	height: auto;
+	background-color: #2F45EB;
+	border-radius:  10px;
+
+/*	height: 200px;
+	display:block;*/
+}
+
+
+
+.submenu, .submenu li{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.submenu li{
+	margin: 5px 0;
+	
+}
+
+
+
+#content{
+	width: 100%;
+	min-height: 100%;
+}
+
+
+
+
+#footer{
+	position: absolute;
+	/*bottom: 0;*/
+	left: 0;
+	background-color: #000;
+	width: 100%;
+	/*height: 50px;*/
+	text-align: center;
+
+}
+
+#footer-Introduction{
+	width: 20%;
+	margin:0 auto;
+	display: flex;
+	justify-content: space-around;
+	
+}
+
+.footer-nav a{
+	padding: none;
+	margin: 10px;
+}
+
+#footer span{
+	color: #fff;
+	font-weight: bold;
+	line-height: 50px;
+
+}

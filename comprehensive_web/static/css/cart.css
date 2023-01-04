@@ -1,0 +1,16 @@
+#cart-list{
+	width: 60%;
+	font-size: 20px;
+}
+.delcart{
+	text-decoration: none;
+}
+
+.delcart:hover{
+	text-decoration: underline;
+}
+
+.cart_button{
+	margin: 20px auto;
+}
+

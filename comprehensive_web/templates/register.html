@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %}
+KH | 會員註冊
+{% endblock %}
+
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/register.css">
+{% endblock %}
+
+{% block js %}
+<script>
+	function checkPwd(){
+		var p = document.getElementsByName("pwd")[0].value;
+		var p2 = document.getElementsByName("checkpwd")[0].value;
+
+		if (p == p2){
+			return true;
+		}else{
+			alert("密碼確認錯誤，請重新確認")
+			return false;
+		}
+
+
+	}
+</script>
+{% endblock %}
+
+
+{% block content %}
+	
+
+	<strong>{{ msg }}</strong>
+
+<!-- 
+	<form action="" method="post" class="register-content" onsubmit="return checkPwd()">
+		{% csrf_token %}
+		<div class="register-from">				
+			<div class="re-form">
+				<label>會員帳號</label>
+				<input type="Email" name="account" placeholder="Email" required>
+			</div>
+
+			<div class="re-form">
+				<label>使用者名稱</label>
+				<input type="text" name="username" placeholder="使用者名稱" required>
+			</div>		
+
+			<div class="re-form">
+				<label>密碼</label>
+				<input type="password" name="pwd" placeholder="密碼" required>
+			</div>
+
+			<div class="re-form">
+				<label>確認密碼</label>
+				<input type="password" name="checkpwd" placeholder="確認密碼" required>
+			</div>
+
+			<div class="re-form">
+				<label>出生年月日</label>
+				<input type="date" name="birthday" required>
+			</div>
+
+			<div class="re-form">
+				<label>性別</label>
+				<input type="radio" name="sex" value="男性" checked="">男性
+				<input type="radio" name="sex" value="女性">女性
+			</div>
+
+			<div class="re-form">
+				<button submit="submit" class="btn_submit">註冊</button>	
+				
+			</div>
+		</div>
+
+	</form> -->
+	
+	<form action="" method="post" onsubmit="return checkPwd()">
+		{% csrf_token %}
+		  <div class="container">
+		    <h1>會員註冊</h1>
+
+		    <hr>
+
+		    <label for="email"><b>會員名稱</b></label>
+		    <input type="text" placeholder="會員名稱" name="username" id="username" required>
+
+		    <label for="email"><b>Email帳號</b></label>
+		    <input type="email" placeholder="Email帳號" name="email" id="email" required>
+
+		    <label for="psw"><b>密碼</b></label>
+		    <input type="password" placeholder="輸入密碼" name="pwd" id="pwd" required>
+
+		    <label for="psw-repeat"><b>確認密碼</b></label>
+		    <input type="password" placeholder="再次輸入密碼" name="checkpwd" id="psw-repeat" required>
+
+		    <label for="psw"><b>性別</b></label>
+		    <input type="radio" name="sex" value="男性" checked="">男性
+		    <input type="radio" name="sex" value="女性">女性<br><br>
+
+
+		    <label for="psw"><b>生日</b></label>
+		    <input type="date" name="birthday" required>
+		    <hr>
+
+		    
+		    <button type="submit" class="registerbtn">註冊</button>
+		    <div class="container signin">
+		    <p>已有會員帳戶? <a href="/login">會員登入</a>.</p>
+		  </div>
+	  	</div>
+
+	  
+	</form>
+
+
+{% endblock %}

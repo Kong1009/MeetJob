@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+KH | 我的訂單紀錄
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/myorder.css">
+{% endblock %}
+
+{% block content %}
+
+	<div style="margin-top: 50px"></div>
+
+	<div id="maindiv">
+
+
+		<h1><i>我的訂單紀錄</i></h1>
+
+		<table  class="table table-striped" cellpadding="4" cellspacing="1">
+			<tr class="order-item">
+				<th width="150" bgcolor="#cccccc">訂單日期</th>
+				<!-- <th bgcolor="#cccccc">訂單詳細內容</th> -->
+				<th width="200" bgcolor="#cccccc">總額</th>
+				<th width="200" bgcolor="#cccccc">付款方式</th>
+			</tr>
+
+			{% for unit in order %}
+
+			<tr class="order-content">
+				<td align="center">{{unit.create_date}}</td>
+				<!-- <td align="center">{{unit.}}</td> -->
+				<td align="center">{{unit.subtotal}}</td>
+				<td align="center">{{unit.paytype}}</td>
+			</tr>
+
+			{% endfor %}
+
+		</table>
+
+
+	</div>
+
+
+
+{% endblock %}

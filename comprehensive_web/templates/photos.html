@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}	
+KH | 照片牆
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/photos.css">
+{% endblock %}
+
+
+{% block content %}
+
+	<div style="margin-top: 30px"></div>
+	{% if request.session.isAlive %}
+
+	{% else %}
+	<div class="alert alert-warning" role="alert">
+	  {{ msg }} <a href="/login" class="alert-link">會員登入</a>
+	</div>
+	{% endif %}
+
+	{% if request.session.isAlive %}
+	<div class="photo-form">
+		<h1>圖片區分享區</h1>
+		<!-- 在表單中若要上傳檔案時，一定要在 form 表單中的屬性加上 enctype="multipart/form-data" 才可以上傳 -->
+		<form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+
+			<div class="choose-file">
+				{{ form.image }}
+			</div>
+
+			<input class="form-control form-control-lg " id="formFileLg" type="submit" value="上傳">
+
+			
+		</form>
+
+	</div>
+
+	{% else %}
+		<div class="photo-form">
+		<h1>圖片區分享區</h1>
+		<!-- 在表單中若要上傳檔案時，一定要在 form 表單中的屬性加上 enctype="multipart/form-data" 才可以上傳 -->
+		<form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+
+
+			<div class="choose-file">
+				{{ form.image }}
+			</div>
+
+			<button class="form-control form-control-lg" id="formFileLg" type="submit" value="上傳" disabled>上傳</button>
+
+			
+		</form>
+
+	</div>
+	{% endif %}
+
+	<div class="row">
+		{% for photo in photos %}
+			{% if photo.image  %}
+				
+					<div class="card mb-4 shadow">
+						<img src="{{ photo.image.url }}" class="card-mg-top">
+
+						<div class="update_img">
+							<button type="button" onclick="" class="btn btn-primary">下載</button>
+						</div>
+					</div>
+
+					
+				
+			{% endif %}
+		{% endfor %}
+	</div>
+{% endblock %}

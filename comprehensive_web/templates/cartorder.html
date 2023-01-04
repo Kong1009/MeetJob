@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block Title %}	
+KH | 購物車
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="/static/css/cartorder.css">
+{% endblock %}
+
+
+
+
+
+
+{% block content %}
+	{% block js %}
+		<script type="text/javascript">
+			$(document).ready(function(){
+			/* 預設勾選童帳單資訊時隱藏填寫欄位，否則顯現 */
+				$("#shipArea").hide("fast");
+
+				/* 判斷是否勾選同帳單資訊 */
+				$("#hideShip").click(function(){
+					if ($("#hideShip").is(":checked")){
+						$("#shipArea").hide("fast");					
+					}else{					
+						$("#shipArea").slideDown();
+					}
+				})
+			});
+		</script>
+	{% endblock %}
+
+
+
+	<div style="margin-top: 50px;"></div>
+
+	<div id="maindiv">
+
+		<form action="/cartok/" method="post" name="form1" id="form1">
+			{% csrf_token %}
+
+			<p class="cartorder-title">訂單內容確認</p>
+
+			<table border="0" align="center" cellpadding="4" cellspacing="0" id="cartorder-check">
+				<tr>
+					<th align="left"><strong>商品名稱</strong></th>
+					<th width="80" align="center"><strong>單價</strong></th>
+					<th width="80" align="center"><strong>數量</strong></th>
+					<th width="100" align="center"><strong>金額</strong></th>
+				</tr>
+
+
+				
+				{% for unit in allcart %}
+
+				<!-- 
+					forloop變量，屬性
+					forloop.counter 由1開始遞增到總數為止
+					forloop.counter0 由0開始遞增到總數為止
+					forloop.revcounter 由串列的總數開始遞減到1
+					forloop.revcounter0 由串列的總數遞減到0
+
+					forloop.first 判斷是否是第一次for 迴圈，回覆值為：True 或 False
+					forloop.last 判斷是否是最後一次for 迴圈 回覆值為：True 或 False
+				 -->
+					<tr>
+						<td align="left">{{ unit.0 }}</td>
+						<td width="80" align="center">$ {{ unit.1 }}</td>
+						<td width="80" align="center">$ {{ unit.2 }}</td>
+						<td width="100" align="center"><strong>$ {{ unit.3 }}</strong></td>
+					</tr>
+				{% endfor %}
+
+				<br>
+
+				<tr>
+					<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>小計</strong></td>
+					<td align="center" bgcolor="#ffffff" class="upline">${{ total }}</td>
+				</tr>
+
+				<tr>
+					<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>運費</strong></td>
+					<td align="center" bgcolor="#ffffff" class="upline">$ 100</td>
+				</tr>
+
+				<tr>
+					<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>總計</strong></td>
+					<td align="center" bgcolor="#ffffff" class="upline"><strong><font color="#ff0000">${{ grandtotal }}</font></strong></td>
+				</tr>
+			</table>
+
+			<br><br><br>
+			
+		
+			<div class="order_information">
+				<table border="0" align="center" cellpadding="4" cellspacing="0" class="customer-form">
+					<legend>訂購者資料</legend>
+					<tr>
+						<th>資訊</th>
+						<th>內容</th>
+					</tr>
+
+
+					<tr>
+						<td width="100" align="cneter"><strong>姓名</strong></td>
+						<td><input type="text" name="cuName" value="{{ name }}" required></td>
+					</tr>
+
+					<tr>
+						<td width="100" align="cneter"><strong>電話</strong></td>
+						<td><input type="text" name="cuPhone" value="{{ phone }}" required></td>
+					</tr>
+
+					<tr>
+						<td width="100" align="cneter"><strong>寄送地址</strong></td>
+						<td><input type="text" name="cuAddress" value="{{ address }}" required></td>
+					</tr>
+
+					<tr>
+						<td width="100" align="cneter"><strong>Email</strong></td>
+						<td><input type="text" name="cuEmail" value="{{ email }}" required readonly></td><!-- readonly 只能讀取不能修改-->
+					</tr>
+
+					<tr>
+						<td width="100" align="cneter"><strong>付款方式</strong></td>
+						<td>
+							<input type="radio" name="payType" value="ATM轉帳" checked>ATM轉帳
+							<input type="radio" name="payType" value="貨到付款">貨到付款
+							<input type="radio" name="payType" value="信用卡">信用卡
+						</td>
+					</tr>
+				</table>
+			</div>
+
+
+
+
+			<table border="0" align="center" cellpadding="10" cellspacing="0">
+				<tr>
+					<td><input type="button" value="繼續購物" onClick="window.location='/general_store'"></td>
+					<td><input type="button" value="修改購物車" onClick="window.location='/cart/'" ></td>
+					<td><input type="submit" value="確認購物"></td>
+				</tr>
+				
+			</table>
+			
+		</form>
+		
+	</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+.order_information{
+	width: 80%;
+	margin:0 auto;
+	
+}
+
+.cartorder-title{
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: 30%;
+}
+
+
+#cartorder-check{
+	width: 50%;
+}
+
+
+.order_information{
+	width: 35%;
+}
+
+.customer-form tr{
+	font-size: 24px;
+}

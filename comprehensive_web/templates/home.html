@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block title %}
+KH | 首頁
+{% endblock %}
+
+{% block js %}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			var i = 0;
+			var clone = $(".banner .img li").first().clone();  // 複製第一章圖片
+
+			$(".banner .img").append(clone); // 將複製的第一張貼到最後面去
+			var size = $(".banner .img li").size(); // 抓個數
+
+
+			/* 自動播放 */
+			var t = setInterval(function(){ // setInterval會不斷的呼叫函數  , 2秒呼叫一次
+				i++;
+				move();
+
+			}, 2000);
+
+			function move(){
+				// 自動移入
+				// size = 6
+				if (i == size){
+					$(".banner .img").css({left: 0});
+					i = 1;
+				}
+
+				if (i == -1){
+					$(".banner .img").css({left:-(size - 1) * 500});
+					i = size -2;
+				}
+
+				// animate動畫 ，往左邊拉 -500px ，會隨著 i 改變，而越拉越多
+				$(".banner .img").stop().animate({left: -i * 500}, 500);
+
+
+			}
+
+			// 滑鼠移入時
+			$(".banner").hover(function(){
+
+				clearInterval(t); // 清除計時器
+
+			},
+			function(){
+				t = setInterval(function(){
+					i ++ ;
+					move();
+				}, 2000);
+			})
+
+			$(".banner .left").click(function(){
+				i ++ ;
+				move();
+			})
+
+			$(".banner .right").click(function(){
+				i -- ;
+				move();
+			})
+
+		});
+	</script>
+
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/home.css">
+{% endblock %}
+
+
+
+
+{% block content %}
+	<div class="banner-div">
+		<div class="big-banner">
+			<img src="/static/images/banner.jpg">
+			<!-- <iframe src="https://giphy.com/embed/8PyTvI5EOu9LbAm8uS" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
+		</div>
+	</div>
+<!-- 	<div id="banner-div">
+		<div class="banner">
+			<ul class="img">
+				{% for m in cartoon_data %}
+					<li><img src="{{m.img_link}}"></li>
+				{% endfor %}
+
+			</ul>
+
+			<div class="btn left">&lt;</div>
+			<div class="btn right">&gt;</div>
+		</div>
+	</div>
+ -->
+
+	<div class="watch_more">
+		<div class="watch_title">
+			<div class="watch_img">
+				<img src="/static/images/play.png">
+			</div>
+			<p><strong>動漫專區</strong></p>
+		</div>
+		<a href="/all_cartoon" class="watch_more_link"><p>觀看更多</p></a>
+	</div>
+
+	<div class="random-program">
+		{% for c in cartoon_data %}
+		<div class="c-content">
+			
+			<div class="random-image">
+				<img src="{{ c.img_link }}">
+			</div>
+			
+			
+
+			<div class="random-content">
+				<a href="{{c.link}}" target="_blank">
+					<p class="c-title">{{c.subject}}</p>
+				</a>
+			</div>
+
+			
+		</div>
+		{% endfor %}
+
+	</div>
+
+
+
+	<div class="watch_more">
+		<div class="watch_title">
+			<div class="watch_img">
+				<img src="/static/images/movie.png">
+			</div>
+			<p><strong>電影專區</strong></p>
+		</div>
+		<a href="/all_movie" class="watch_more_link"><p>觀看更多</p></a>
+	</div>
+	<div class="random-program">
+		{% for c in movie_data %}
+		<div class="c-content">
+			
+			<div class="random-image">
+				<img src="{{ c.img_link }}">
+			</div>
+			
+
+			<div>
+				<a href="{{c.link}}" target="_blank">
+					<p class="c-title">{{c.title}}</p>
+				</a>
+			</div>
+			
+		</div>
+		{% endfor %}
+
+	</div>
+
+
+
+{% endblock %}

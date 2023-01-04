@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block title %}
+KH | 電影特區
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/static/css/cartoon.css">
+{% endblock %}
+
+{% block content %}
+
+	<div class="cartoon-title">
+		
+
+	    <nav class="movie-filter">
+	        <ul class="filter">
+	            <li>類型：</li>
+	            <li><a href="#">全部</a></li>
+	            <li><a href="#">驚悚片</a></li>
+	            <li><a href="#">音樂片</a></li>
+	            <li><a href="#">運動片</a></li>
+	            <li><a href="#">西部片</a></li>
+	            <li><a href="#">紀錄片</a></li>
+	            <li><a href="#">科幻片</a></li>
+	            <li><a href="#">犯罪片</a></li>
+	            <li><a href="#">災難片</a></li>
+	            <li><a href="#">歷史片</a></li>
+	            <li><a href="#">戰爭片</a></li>
+	            <li><a href="#">懸疑片</a></li>
+	            <li><a href="#">愛情片</a></li>
+	            <li><a href="#">恐怖片</a></li>
+	            <li><a href="#">寫真片</a></li>
+	            <li><a href="#">家庭片</a></li>
+	            <li><a href="#">奇幻片</a></li>
+	            <li><a href="#">喜劇片</a></li>
+	            <li><a href="#">動畫片</a></li>
+	            <li><a href="#">劇情片</a></li>
+	            <li><a href="#">冒險面</a></li>
+	            <li><a href="#">傳紀片</a></li>
+	        </ul>
+
+	        <hr>
+
+	        <ul class="filter">
+	            <li>地區：</li>
+	            <li><a href="#">全部</a></li>
+	            <li><a href="#">香港</a></li>
+	            <li><a href="#">韓國</a></li>
+	            <li><a href="#">海外</a></li>
+	            <li><a href="#">泰國</a></li>
+	            <li><a href="#">歐美</a></li>
+	            <li><a href="#">日本</a></li>
+	            <li><a href="#">大陸</a></li>
+	            <li><a href="#">台灣</a></li>
+	            <li><a href="#">印度</a></li>  
+	        </ul>
+
+	        <hr>
+
+	        <ul class="filter">
+	            <li>年份：</li>
+	            <li><a href="#">2022</a></li>
+	            <li><a href="#">2021</a></li>
+	            <li><a href="#">2020</a></li>
+	            <li><a href="#">2019</a></li>
+	            <li><a href="#">2018</a></li>
+	            <li><a href="#">2017</a></li>
+	            <li><a href="#">2016</a></li>
+	            <li><a href="#">2015</a></li>
+	            <li><a href="#">2014</a></li>
+	            <li><a href="#">2013</a></li>  
+	            <li><a href="#">2012</a></li>
+	            <li><a href="#">2011</a></li>
+	            <li><a href="#">2010</a></li>
+	            <li><a href="#">2009</a></li>
+	            <li><a href="#">2008</a></li>
+	            <li><a href="#">2007-1970</a></li>
+	        </ul>
+
+	        <hr>
+
+	        <ul class="filter">
+	            <li>排序：</li>
+	            <li><a href="#">按更新</a></li>
+	            <li><a href="#">總人氣</a></li>
+	            <li><a href="#">月人氣</a></li>
+	            <li><a href="#">周人氣</a></li>
+	            <li><a href="#">日人氣</a></li>
+	            <li><a href="#">按評分</a></li>
+	        </ul>
+
+	    </nav>
+
+	    <div class="cartoon-title">
+			<h1>電影查詢</h1>
+
+
+			
+			<div class="content-filter-div">
+
+				<form action="" method="get">
+					<div>
+						<input type="text" name="get-title" class="search-title">
+						<input type="submit" value="查詢">
+					</div>
+
+				</form>
+
+			</div>
+		
+
+		</div>
+	</div>
+	
+	<div class="cartoon">
+		{% for data in movies %}
+		
+			<a href="{{ data.link }}" target="_blank">
+				<div class="cartoon-img">
+					<img src="{{ data.img_link }}">
+				</div>
+
+				<div class="cartoon-text">
+					<p>{{ data.title }}</p>
+					<p>人氣：{{ data.evaluation }}萬</p>
+					<p>{{ data.date }}</p>
+				</div>
+
+			</a>
+		
+		{% endfor %}
+	</div>
+
+
+	<div class="up-down">
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination justify-content-center">
+		    <li class="page-item">
+	      	{% if movies.has_previous %}
+		      <a class="page-link" href="?page={{ movies.previous_page_number }}" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		     {% endif %}
+		    </li>
+		    {% for i in nums %}
+		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		    {% endfor %}
+		    <li class="page-item">
+		    	{% if movies.has_next %}
+		      <a class="page-link" href="?page={{ movies.next_page_number }}">下一頁</a>
+		    	{% endif %}
+		    </li>
+		    <li class="page-item disabled"><a class="page-link">第{{ venues.number }}頁 | 共{{ venues.paginator.num_pages }}頁</a></li>
+		  </ul>
+		</nav>
+	</div>
+
+	
+
+	
+
+
+	
+
+
+
+{% endblock %}
