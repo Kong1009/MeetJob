@@ -1,11 +1,10 @@
 .member-div{
-	width: 45%;
+	width: 30%;
 	margin:0 auto;
-	display: flex;
 	padding: 50px 0;
-
-
 }
+
+
 
 .member-setting{
 	width: 20%;
@@ -17,5 +16,12 @@
 }
 
 .member-content{
-	width: 80%;
+	font-size: 20px;
+
+}
+
+#member-msg{
+	font-size: 30px;
+	text-align: center;
+	color: red;
 }

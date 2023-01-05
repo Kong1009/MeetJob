@@ -1,0 +1,11 @@
+#login-msg{
+	width: 55%;
+	margin: 20px auto;
+
+}
+
+#login-msg strong{
+	font-size: 24px;
+	font-weight: bold;
+	color: red;
+}

@@ -35,6 +35,24 @@ body{
 	width: 100%;
 }
 
+#happy-new-year{
+	position: relative;
+	width: 150px;
+	animation: animation 10s infinite alternate;
+}
+
+@keyframes animation{
+	0%{left: 30%;}
+
+	50%{left: -30%;}
+
+	100%{left: 30%;}
+}
+
+#happy-new-year img{
+	width: 100%;
+}
+
 #member_login{
 	display:flex;
 	align-items: center;
