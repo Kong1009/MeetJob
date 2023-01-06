@@ -75,18 +75,15 @@
 				<div id="member_login">
 					{% if request.session.isAlive %}
 						<a href="/logout">會員登出</a>
-						<!-- <a href="/memberSetting">帳號管理</a> -->
 						<a href="/memberSetting">
 							<div class="member-icon">
 								<img src="/static/images/member-icon.png">
+								
 							</div>
-
 						</a>
 					{% else %}
 						
 						<a href="/login"><img id="m_login" src="/static/images/member.png">登入</a>
-										
-						
 						<a href="/register">會員註冊</a>
 					{% endif %}
 					

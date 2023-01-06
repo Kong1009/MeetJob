@@ -11,5 +11,3 @@ class CarToon(models.Model):
     director = models.CharField(max_length=20) # 導演
     area = models.CharField(max_length=20) # 地區
     
-    class Meta:
-        db_table = "CarToon"

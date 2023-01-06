@@ -10,7 +10,4 @@ class Member(models.Model):
     sex = models.CharField(max_length=2) # 性別
     create_date = models.DateTimeField(auto_now_add=True) # 建立日期
     
-    
-    class Meta:
-        db_table = "members"
-    
+

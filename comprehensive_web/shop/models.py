@@ -8,8 +8,6 @@ class Product(models.Model):
     img_link = models.CharField(max_length=255)
     price = models.CharField(max_length=100)
     item = models.CharField(max_length=50)
-    info = models.TextField()
+    info = models.TextField(blank=True, null=True)
     create_date = models.DateField(auto_now_add=True)
     
-    class Meta:
-        db_table = "products"

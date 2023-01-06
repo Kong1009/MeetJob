@@ -89,7 +89,7 @@ pymysql.install_as_MySQLdb()
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'myweb',
+        'NAME': 'mywebdata',
         'USER': 'root',
         'PASSWORD': '123456789',
         'HOST': 'localhost',
@@ -140,7 +140,6 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
     ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
     ('icon', os.path.join(STATIC_ROOT, 'icon').replace('\\', '/')),
-    ('fontawesome', os.path.join(STATIC_ROOT, 'fontawesome').replace('\\', '/')),
     
     
     )

@@ -7,5 +7,3 @@ class Contact(models.Model):
 	info = models.TextField()
 	create_date = models.DateTimeField(auto_now_add=True)
 
-	class Meta:
-		db_table = 'contacts'

@@ -63,6 +63,7 @@ urlpatterns = [
     
     # 照片牆
     path('photos/', uploadFile),
+    # path('photos/<str:do')
 
     # 聯絡我們
     path('contact/', contact),

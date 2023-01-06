@@ -18,7 +18,7 @@ def login(request):
         obj = Member.objects.filter(email = account,
                                     password = password).count()
         
-        if obj > 0:
+        if obj == 1:
             request.session['account'] = account
             request.session['isAlive'] = True
             

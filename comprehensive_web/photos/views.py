@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from .forms import UploadModelForm
 from .models import Photo
 # Create your views here.
+
+
+    
+
 def uploadFile(request):
     photos = Photo.objects.all()
     form = UploadModelForm()
@@ -25,3 +29,4 @@ def uploadFile(request):
     
     
     return render(request, 'photos.html', locals())
+
