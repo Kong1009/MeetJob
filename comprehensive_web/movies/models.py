@@ -8,3 +8,6 @@ class Movies(models.Model):
     evaluation = models.CharField(max_length=10)
     date = models.DateField(max_length=10)
     
+    class Meta:
+       db_table = 'movies'
+   

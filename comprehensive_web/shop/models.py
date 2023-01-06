@@ -11,3 +11,6 @@ class Product(models.Model):
     info = models.TextField(blank=True, null=True)
     create_date = models.DateField(auto_now_add=True)
     
+    class Meta:
+        db_table = 'products'
+    

@@ -11,3 +11,5 @@ class Member(models.Model):
     create_date = models.DateTimeField(auto_now_add=True) # 建立日期
     
 
+    class Meta:
+       db_table = 'members'
