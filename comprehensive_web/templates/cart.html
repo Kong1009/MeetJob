@@ -27,9 +27,9 @@ KH | 購物車
 		<form action="/addtocart/update/" method="post" name="form1" id="form1">
 			{% csrf_token %}
 
-			<table width="60%" border="0" align="center" cellpadding="4" cellspacing="0" id="cart-list">
+			<table class="table table-dark" width="60%" border="0" align="center" cellpadding="4" cellspacing="0" id="cart-list">
 				<tr>
-					<th width="60" align="center"><strong>取消</strong></th>
+					<th align="center"><strong>取消</strong></th>
 					<th align="left"><strong>商品名稱</strong></th>
 					<th width="80" align="center"><strong>單價</strong></th>
 					<th width="80" align="center"><strong>數量</strong></th>

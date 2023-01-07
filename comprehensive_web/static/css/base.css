@@ -58,7 +58,13 @@ body{
 	align-items: center;
 }
 
+#shopcarticon{
+	width: 65px;
+}
 
+#shopcarticon img{
+	width: 100%;
+}
 
 #member_login a{
 	margin:0 10px;

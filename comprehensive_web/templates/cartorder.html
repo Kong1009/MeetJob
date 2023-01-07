@@ -34,16 +34,26 @@ KH | 購物車
 
 
 
+
+
 	<div style="margin-top: 50px;"></div>
+    {% if messages %}
+      {% for message in messages %}        
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+		  <strong>{{message}}!</strong>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+      {% endfor %}
+    {% endif %}
 
 	<div id="maindiv">
 
-		<form action="/cartok/" method="post" name="form1" id="form1">
+		<form action="/cartok/" method="post" name="form1" id="form1" onclick="">
 			{% csrf_token %}
 
 			<p class="cartorder-title">訂單內容確認</p>
 
-			<table border="0" align="center" cellpadding="4" cellspacing="0" id="cartorder-check">
+			<table  class="table table-dark" border="0" align="center" cellpadding="4" cellspacing="0" id="cartorder-check">
 				<tr>
 					<th align="left"><strong>商品名稱</strong></th>
 					<th width="80" align="center"><strong>單價</strong></th>
@@ -68,7 +78,7 @@ KH | 購物車
 					<tr>
 						<td align="left">{{ unit.0 }}</td>
 						<td width="80" align="center">$ {{ unit.1 }}</td>
-						<td width="80" align="center">$ {{ unit.2 }}</td>
+						<td width="80" align="center"> {{ unit.2 }}</td>
 						<td width="100" align="center"><strong>$ {{ unit.3 }}</strong></td>
 					</tr>
 				{% endfor %}
@@ -76,17 +86,17 @@ KH | 購物車
 				<br>
 
 				<tr>
-					<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>小計</strong></td>
+					<td colspan="3" align="left" bgcolor="#ffffff" class="upline"><strong>小計</strong></td>
 					<td align="center" bgcolor="#ffffff" class="upline">${{ total }}</td>
 				</tr>
 
 				<tr>
-					<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>運費</strong></td>
+					<td colspan="3" align="left" bgcolor="#ffffff" class="upline"><strong>運費</strong></td>
 					<td align="center" bgcolor="#ffffff" class="upline">$ 100</td>
 				</tr>
 
 				<tr>
-					<td colspan="4" align="left" bgcolor="#ffffff" class="upline"><strong>總計</strong></td>
+					<td colspan="3" align="left" bgcolor="#ffffff" class="upline"><strong>總計</strong></td>
 					<td align="center" bgcolor="#ffffff" class="upline"><strong><font color="#ff0000">${{ grandtotal }}</font></strong></td>
 				</tr>
 			</table>
@@ -95,7 +105,7 @@ KH | 購物車
 			
 		
 			<div class="order_information">
-				<table border="0" align="center" cellpadding="4" cellspacing="0" class="customer-form">
+				<table  class="table table-dark" border="0" align="center" cellpadding="4" cellspacing="0" class="customer-form">
 					<legend>訂購者資料</legend>
 					<tr>
 						<th>資訊</th>
@@ -105,12 +115,12 @@ KH | 購物車
 
 					<tr>
 						<td width="100" align="cneter"><strong>姓名</strong></td>
-						<td><input type="text" name="cuName" value="{{ name }}" required></td>
+						<td><input type="text" name="cuName" value="{{ customname }}" required></td>
 					</tr>
 
 					<tr>
 						<td width="100" align="cneter"><strong>電話</strong></td>
-						<td><input type="text" name="cuPhone" value="{{ phone }}" required></td>
+						<td><input type="text" placeholder="09xx-xxx-xxx" name="cuPhone" value="{{ phone }}" required></td>
 					</tr>
 
 					<tr>

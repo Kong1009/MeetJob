@@ -143,6 +143,8 @@
 .c-content{
 	width: 20%;
 	padding:0 15px;
+	position: static;
+
 }
 
 
@@ -155,10 +157,8 @@
 
 .c-content a{
 	position: static;
-	/*display: inline-block;*/
 	text-decoration: none;
 	
-
 }
 
 /*.c-content a:hover::before{
@@ -169,16 +169,15 @@
 
 .random-content{
 	width: 100%;
+	white-space: nowrap; /* 不換行 */ 
+
+
 }
 
 .c-title{
-	font-size: 26px;
-	margin: 0;
-	/*height: 30px;*/
-	white-space: nowrap; /* 不換行 */
-    text-overflow: ellipsis; /* 文字超出範圍顯示... */
+	font-size: 20px;
     overflow: hidden;
-
-
+	text-overflow: ellipsis; /* 文字超出範圍顯示... */
+	margin: 0;
 }
 

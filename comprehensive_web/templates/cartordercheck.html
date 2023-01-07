@@ -5,18 +5,19 @@ KH | 訂單明細
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/cart.css">
+<link rel="stylesheet" href="/static/css/cartordercheck.css">
 {% endblock %}
 
 
 {% block content %}
+
 	<div style="margin-top: 50px"></div>
 
 	<div id="maindiv">
 
 		{% if nosearch == 1 %}
 			<form action="/cartordercheck/" method="get">
-				<p class="title">訂單查詢</p>
+				<p class="order-check-title"><strong>訂單查詢</strong></p>
 				<table border="0" align="center" cellpadding="10" cellspacing="0">
 					<tr>
 						<td>訂單編號</td>
@@ -40,7 +41,7 @@ KH | 訂單明細
 				<div class="message">對不起，找不到您的訂單資料，請重新查詢</div>
 			
 				<form action="/cartordercheck/" method="get">
-					<p class="title">訂單查詢</p>
+					<p class="order-check-title">訂單查詢</p>
 					<table border="0" align="center" cellpadding="10" cellspacing="0">
 						<tr>
 							<td>訂單編號</td>
@@ -59,65 +60,69 @@ KH | 訂單明細
 				</form>
 
 			{% else %}
-				<p class="title">訂單資料</p>
-				<p class="subject">訂單編號：<font colro="#ff0000">{{ orderid }}</font></p>
+				<h1>訂單資料</h1>
+				<div class="order-Details">
+					<p class="subject">訂單編號：<font colro="#ff0000">{{ orderid }}</font></p>
 
-				<table width="90%" border="0" align="center" cellpadding="4" cellsapcing="1">
-					<tr>
-						<th align="center" bgcolor="#cccccc">商品名稱</th>
-						<th width="80" algine="center" bgcolor="#cccccc">單價</th>
-						<th width="80" algine="center" bgcolor="#cccccc">數量</th>
-						<th width="80" algine="center" bgcolor="#cccccc">金額</th>
-					</tr>
-
-					{% for unit in details %}
+					<table class="table table-dark" width="90%" border="0" align="center" cellpadding="4" cellsapcing="1">
 						<tr>
-							<td align="center">{{unit.pname}}</td>
-							<td align="center">{{unit.unitprice}}</td>
-							<td align="center">{{unit.quantity}}</td>
-							<td align="center">{{unit.dtotal}}</td>
+							<th align="center" bgcolor="#cccccc">商品名稱</th>
+							<th width="80" algine="center" bgcolor="#cccccc">單價</th>
+							<th width="80" algine="center" bgcolor="#cccccc">數量</th>
+							<th width="80" algine="center" bgcolor="#cccccc">金額</th>
 						</tr>
-					{% endfor %}
 
-					<tr>
-						<td colspan="3" align="left"><strong>小計</strong></td>
-						<td width="150" align="center"><strong>${{order.subtotal}}</strong></td>
-					</tr>
+						{% for unit in details %}
+							<tr>
+								<td align="center">{{unit.pname}}</td>
+								<td align="center">{{unit.unitprice}}</td>
+								<td align="center">{{unit.quantity}}</td>
+								<td align="center">{{unit.dtotal}}</td>
+							</tr>
+						{% endfor %}
 
-					<tr>
-						<td colspan="3" align="left"><strong>運費</strong></td>
-						<td width="150" align="center"><strong>$100</strong></td>
-					</tr>
+						<tr>
+							<td colspan="3" align="left"><strong>小計</strong></td>
+							<td width="150" align="center"><strong>${{order.subtotal}}</strong></td>
+						</tr>
 
-					<tr>
-						<td colspan="3" align="left"><strong>總額</strong></td>
-						<td width="150" align="center"><strong>${{order.grandtotal}}</strong></td>
-					</tr>
-				</table>
+						<tr>
+							<td colspan="3" align="left"><strong>運費</strong></td>
+							<td width="150" align="center"><strong>$100</strong></td>
+						</tr>
 
-				<p class="subject">訂單客戶資料</p>
-				<table width="90%" border="0" align="center" cellpadding="4" cellspacing="1">
-					<tr>
-						<td width="100" align="cneter" bgcolor="#cccccc"><strong>姓名</strong></td>
-						<td bgcolor="#ffffff" align="center">{{ order.customname }}</td>
-					</tr>
+						<tr>
+							<td colspan="3" align="left"><strong>總額</strong></td>
+							<td width="150" align="center"><strong>${{order.total_amount}}</strong></td>
+						</tr>
+					</table>
+				</div>
 
-					<tr>
-						<td width="100" align="cneter" bgcolor="#cccccc"><strong>電話</strong></td>
-						<td bgcolor="#ffffff" align="center">{{ order.customphone }}</td>
-					</tr>
+				<div class="order-Details">
+					<p class="subject">客戶資料</p>
+					<table class="table table-dark" width="90%" border="0" align="center" cellpadding="4" cellspacing="1">
+						<tr>
+							<td width="100" align="cneter" bgcolor="#cccccc"><strong>姓名</strong></td>
+							<td bgcolor="#ffffff" align="center">{{ order.customername }}</td>
+						</tr>
 
-					<tr>
-						<td width="100" align="cneter" bgcolor="#cccccc"><strong>地址</strong></td>
-						<td bgcolor="#ffffff" align="center">{{ order.customaddress }}</td>
-					</tr>
+						<tr>
+							<td width="100" align="cneter" bgcolor="#cccccc"><strong>電話</strong></td>
+							<td bgcolor="#ffffff" align="center">{{ order.customerphone }}</td>
+						</tr>
 
-					<tr>
-						<td width="100" align="cneter" bgcolor="#cccccc"><strong>Email</strong></td>
-						<td bgcolor="#ffffff" align="center">{{ order.customemail }}</td>
-					</tr>
-					
-				</table>
+						<tr>
+							<td width="100" align="cneter" bgcolor="#cccccc"><strong>地址</strong></td>
+							<td bgcolor="#ffffff" align="center">{{ order.customeraddress }}</td>
+						</tr>
+
+						<tr>
+							<td width="100" align="cneter" bgcolor="#cccccc"><strong>Email</strong></td>
+							<td bgcolor="#ffffff" align="center">{{ order.customeremail }}</td>
+						</tr>
+						
+					</table>
+				</div>
 
 			{% endif %}
 

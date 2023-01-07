@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from movies.views import all_movies
+from movies.views import all_movies, test
 from cartoon.views import all_cartoon
 from members.views import member_manage, register,  logout, login, forget_pwd
 from shop.views import GroceryStore
@@ -38,6 +38,8 @@ urlpatterns = [
     
     # 電影區
     path('all_movie/', all_movies),
+    path('all_movie/<str:year>/', all_movies),
+    path('test/', test),
     
     # 會員專區
     path('memberSetting/', member_manage),
@@ -67,6 +69,7 @@ urlpatterns = [
 
     # 聯絡我們
     path('contact/', contact),
+    path('contact/<str:sendmsg>/', contact),
     
 ]
 

@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 from shopcart import models
 from shop.models import Product
 from members.models import Member
 from datetime import datetime
 
 from django.utils.html import format_html
+
+import re
 
 import os
 basedir = os.path.dirname(__file__) # 抓取預設目錄位置
@@ -128,9 +131,11 @@ def cartorder(request):
         
         grandtotal = total + 100 # 加運費
         
-        # member_data = Member.objects.filter(email = request.session['account'])
-        # customname = member_data.name
-        name = customname
+        
+        member_data = Member.objects.get(email = request.session['account'])
+
+
+        customname = member_data.username # 抓取帳號名稱
         phone = customphone
         address = customaddress
         email = request.session['account']
@@ -159,15 +164,22 @@ def cartok(request):
     customemail = request.POST.get('cuEmail', '')
     paytype = request.POST.get('payType')
     
-    # 新增資料至訂單資料表中(資料庫)
-    unitorder = models.OrdersModel.objects.create(subtotal = total,
-                                                  shipping = 100,
-                                                  total_amount = grandtotal,
-                                                  customername = customname,
-                                                  customerphone = customphone,
-                                                  customeraddress = customaddress,
-                                                  customeremail = customemail,
-                                                  paytype = paytype)
+    phone_pattern = r'^09\d{2}-\d{3}-\d{3}'
+    match = re.search(phone_pattern, customphone)
+    
+    if match:
+        # 新增資料至訂單資料表中(資料庫)
+        unitorder = models.OrdersModel.objects.create(subtotal = total, # 商品總額
+                                                      shipping = 100, # 運費
+                                                      total_amount = grandtotal, # 總額+運費:總金額
+                                                      customername = customname,
+                                                      customerphone = customphone,
+                                                      customeraddress = customaddress,
+                                                      customeremail = customemail,
+                                                      paytype = paytype)
+    else:
+        messages.success(request, ('電話號碼格式錯誤!請重新輸入'))
+        return render(request, 'cartorder.html', locals())
     
     # 要將各個的商品新增到 明細表
     for unit in cartlist:

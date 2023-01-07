@@ -1,6 +1,5 @@
 <html>
 <head>
-
 	<title>
 		{% block title %}
 
@@ -10,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js">
 	<link rel="stylesheet" type="text/css" href="/static/css/circle_animation.css">
 	<link rel="icon" href="/static/images/mylogo.png">
-
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 	{% block css %}
 
 	{% endblock %}
@@ -71,16 +70,21 @@
 				
 			</div>
 
+
 			<div id="member_div">
 				<div id="member_login">
 					{% if request.session.isAlive %}
+						<div id="shopcarticon">
+							<a href="/cart"><img src="/static/images/shopcart.png"></a>
+						</div>
 						<a href="/logout">會員登出</a>
 						<a href="/memberSetting">
 							<div class="member-icon">
 								<img src="/static/images/member-icon.png">
-								
+
 							</div>
 						</a>
+
 					{% else %}
 						
 						<a href="/login"><img id="m_login" src="/static/images/member.png">登入</a>

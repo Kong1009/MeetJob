@@ -1,0 +1,25 @@
+#maindiv{
+	width: 70%;
+	margin:0 auto;
+}
+
+.order-check-title{
+	font-size: 30px;
+	font-weight: bold;
+	font-style: italic;
+
+}
+
+h1{
+	border-bottom: 4px solid;
+}
+
+.order-Details{
+	padding: 2%;
+	border-bottom: 2px solid;
+}
+
+.subject{
+	font-size: 20px;
+	font-weight: bold;
+}
