@@ -32,4 +32,4 @@ def contact(request, sendmsg=None):
     else:
         
         messages.success(request, ('您好!'))
-        return render(request, 'contact.html', locals())
+        return render(request, 'contact.html')

@@ -14,6 +14,14 @@ body{
 	
 }
 
+.prompt-msg{
+	width: 65%;
+	margin:20px auto;
+	color: red;
+	background: #A5CFFB;
+	font-weight: bold;
+}
+
 
 #header{
 	width: 80%;

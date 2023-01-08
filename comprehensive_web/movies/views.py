@@ -15,8 +15,9 @@ def all_movies(request, year=None):
         movies = Movies.objects.all()
     
     
-    # if year == '2022':
-    #     movies = Movies.objects.filter(date = year)
+    if year == '2022':
+        movies = Movies.objects.filter(date__icontains = year)
+        
     
     
     paginator = Paginator(movies, 20)

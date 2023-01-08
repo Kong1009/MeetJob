@@ -18,10 +18,10 @@ from django.urls import path
 
 from django.conf import settings
 from django.conf.urls.static import static
-
-from movies.views import all_movies, test
+from django.conf.urls import include
+from movies.views import all_movies
 from cartoon.views import all_cartoon
-from members.views import member_manage, register,  logout, login, forget_pwd
+from members.views import member_manage, register,  logout, login, forget_pwd, test
 from shop.views import GroceryStore
 from shopcart.views import addtocart, cart, cartorder, cartok, cartordercheck, myorder, ECPayCredit
 from contact.views import contact
@@ -39,7 +39,7 @@ urlpatterns = [
     # 電影區
     path('all_movie/', all_movies),
     path('all_movie/<str:year>/', all_movies),
-    path('test/', test),
+    
     
     # 會員專區
     path('memberSetting/', member_manage),
@@ -70,6 +70,10 @@ urlpatterns = [
     # 聯絡我們
     path('contact/', contact),
     path('contact/<str:sendmsg>/', contact),
+    
+    
+    path('captcha/', include('captcha.urls')),
+    path('test/', test),
     
 ]
 

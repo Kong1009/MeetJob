@@ -15,11 +15,11 @@ KH | 綜合商店
 	<form action="" method="get" class="shop_select">
 		<div>
 			<label>商品關鍵字：</label>
-			<input type="text" name='p'>
+			<input type="text" name='p' value="{{goodName}}">
 			<br><br>
 
 			<label>價格區間：</label>
-			<input type="text" name="priceS"> ~ <input type="text" name="priceE">
+			<input type="text" name="priceS" value={{priceS}}> ~ <input type="text" name="priceE" value={{priceE}}>
 			<br><br>
 			
 		</div>
@@ -27,7 +27,7 @@ KH | 綜合商店
 		<div>
 			<label for="item">商品種類</label>
 			<select id="item" name="item" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-				<option value='0' selected>預設</option>
+				<option value='0' >預設</option>
 				<option value='1'>家電</option>
 				<option value='2'>手機</option>
 				<option value="3">衣服</option>
@@ -41,6 +41,7 @@ KH | 綜合商店
 
 		<div class="d-grid gap-2 d-md-flex justify-content-md-end">
 		  <button class="btn btn-primary" type="submit">商品查詢</button>
+		  <input class="btn btn-primary" type="reset" value="重設"></input>
 		</div>
 
 

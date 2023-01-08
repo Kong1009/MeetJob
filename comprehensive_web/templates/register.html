@@ -30,24 +30,29 @@ KH | 會員註冊
 
 {% block content %}
 	
-
+    {% if messages %}
+      {% for message in messages %}        
+        <div class="alert alert-warning alert-dismissible fade show prompt-msg" role="alert">
+		  <strong>{{message}}!</strong>
+		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+      {% endfor %}
+    {% endif %}
 
 	<form action="" method="post" onsubmit="return checkPwd()" class="register-form">
 		{% csrf_token %}
 		  <div class="container">
 		    <h1>會員註冊</h1>
-		    <strong>{{ msg }}</strong>
-
 		    <hr>
 
 		    <label for="email"><b>會員名稱</b></label>
-		    <input type="text" placeholder="會員名稱" name="username" id="username" required>
+		    <input type="text" placeholder="會員名稱" name="username" id="username" required value="{{username}}">
 
 		    <label for="email"><b>Email帳號</b></label>
-		    <input type="email" placeholder="Email帳號" name="email" id="email" required>
+		    <input type="email" placeholder="Email帳號" name="email" id="email" required value="{{account}}">
 
 		    <label for="psw"><b>密碼</b></label>
-		    <input type="password" placeholder="輸入密碼" name="pwd" id="pwd" required>
+		    <input type="password" placeholder="輸入密碼" name="pwd" id="pwd" required >
 
 		    <label for="psw-repeat"><b>確認密碼</b></label>
 		    <input type="password" placeholder="再次輸入密碼" name="checkpwd" id="psw-repeat" required>
@@ -63,7 +68,7 @@ KH | 會員註冊
 
 		    
 		    <button type="submit" class="registerbtn">註冊</button>
-		    <input type="reset" class="registerbtn" value="重新填寫"></button>
+		    <input type="reset" class="registerbtn" value="重新填寫"></input>
 		    <div class="container signin">
 		    <p>已有會員帳戶? <a href="/login">會員登入</a>.</p>
 		  </div>

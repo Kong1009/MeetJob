@@ -26,6 +26,7 @@ def GroceryStore(request):
                                           price__lte=priceE
                                           )
             
+            
         # 搜尋種類 + 商品名稱
         elif (item != "0" and len(goodName) != 0 and len(priceS) == 0 and len(priceE) == 0):
             data = Product.objects.filter(item = item,

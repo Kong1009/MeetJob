@@ -46,8 +46,28 @@ INSTALLED_APPS = [
     'shopcart',
     'contact',
     'photos',
+    'captcha',
     
 ]
+
+CAPTCHA_NOISE_FUNCTIONS = (
+    'captcha.helpers.noise_null', 
+    # 'captcha.helpers.noise_arcs',   
+    # 'captcha.helpers.noise_dots',  
+)
+
+#CAPTCHA_IMAGE_SIZE = (150, 70) 
+
+#驗證碼顏色
+#CAPTCHA_BACKGROUND_COLOR = '#00ff00' 
+
+#CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.random_char_challenge'
+#CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge' 
+  
+#驗證碼長度
+#CAPTCHA_LENGTH = 6 
+
+#CAPTCHA_TIMEOUT = 1 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
