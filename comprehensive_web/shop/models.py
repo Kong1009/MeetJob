@@ -6,7 +6,7 @@ class Product(models.Model):
     platform = models.CharField(max_length=50)
     link = models.CharField(max_length=255)
     img_link = models.CharField(max_length=255)
-    price = models.CharField(max_length=100)
+    price = models.IntegerField()
     item = models.CharField(max_length=50)
     info = models.TextField(blank=True, null=True)
     create_date = models.DateField(auto_now_add=True)

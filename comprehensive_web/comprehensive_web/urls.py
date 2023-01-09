@@ -19,7 +19,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
-from movies.views import all_movies
+from movies.views import all_movies, test_m
 from cartoon.views import all_cartoon
 from members.views import member_manage, register,  logout, login, forget_pwd, test
 from shop.views import GroceryStore
@@ -34,7 +34,8 @@ urlpatterns = [
     path('home/', index),
     
     # 動漫區
-    path('all_cartoon/', all_cartoon),
+    path('cartoon/', all_cartoon),
+    path('cartoon/<str:year>/', all_cartoon),
     
     # 電影區
     path('all_movie/', all_movies),
@@ -73,7 +74,7 @@ urlpatterns = [
     
     
     path('captcha/', include('captcha.urls')),
-    path('test/', test),
+    path('test/', test_m),
     
 ]
 

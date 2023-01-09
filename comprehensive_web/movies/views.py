@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from members.models import Member
 from .models import Movies
@@ -8,15 +9,33 @@ def all_movies(request, year=None):
     year = ""
     if 'get-title' in request.GET:
         title = request.GET['get-title']
+        year = request.GET['year']
         
-        movies = Movies.objects.filter(title__icontains = title)
-
+        
+        if len(title) > 0:
+            movies = Movies.objects.filter(title__icontains = title)
+        
+        # elif 'year' in request.GET:
+        elif len(year) > 0:
+            year = request.GET['year']
+            movies = Movies.objects.filter(date__icontains = year)
+            
+            
+        # elif 'get-title' in request.GET and 'year' in request.GET:
+        elif len(title) > 0 and len(year) > 0:
+            title = request.GET['get-title']
+            year = request.GET['year']
+            movies = Movies.objects.filter(title__icontains = title,
+                                           date__icontains = year)
+           
+        else:
+            movies = Movies.objects.all()
     else:
         movies = Movies.objects.all()
+        
     
-    
-    if year == '2022':
-        movies = Movies.objects.filter(date__icontains = year)
+    if len(movies) == 0:
+            messages.success(request, ("暫無資料"))
         
     
     
@@ -38,14 +57,14 @@ def all_movies(request, year=None):
         
     return render(request, 'movie.html', locals())
 
-def test(request):
-    # year = '2022'
-    # movies = Movies.objects.all().order_by('id')[:1]
-    # d = movies.date[0][4]
-    # for i in movies:
-    #     date = i[4]
+def test_m(request):
+    year = '2022'
+    # 
+    # movies = Movies.objects.all()[:1]
+    movies = Movies.objects.filter(date__icontains = year)
+    c = movies.count()
     
-    d = Member.objects.get(email = request.session['account'])
+    
     
     
     

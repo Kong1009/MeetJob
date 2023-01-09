@@ -3,17 +3,23 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import CarToon
 # Create your views here.
 
-def all_cartoon(request):
+def all_cartoon(request, year=None):
     title = ""
-    
+    year = ""
     if "get-title" in request.GET:
         subject = request.GET['get-title']
         
         data = CarToon.objects.filter(subject__icontains = subject)
         
+    elif 'year' in request.GET:
+        # year = request.GET['year']
+        data = CarToon.objects.filter(year__icontains = year)
+        
     else:
     
-        data = CarToon.objects.all().order_by()
+        data = CarToon.objects.all().order_by('id')
+        
+        
         
     paginator = Paginator(data, 20)
     page = request.GET.get('page')
@@ -31,4 +37,4 @@ def all_cartoon(request):
     
     
     
-    return render(request, 'all_cartoon.html', locals())
+    return render(request, 'cartoons.html', locals())

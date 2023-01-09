@@ -158,18 +158,16 @@
 .c-content a{
 	position: static;
 	text-decoration: none;
+
 	
 }
 
-/*.c-content a:hover::before{
-	position:absolute;
-	top: 50px;
-	content: 'test';
-}*/
 
 .random-content{
 	width: 100%;
 	white-space: nowrap; /* 不換行 */ 
+	overflow: hidden;
+	text-overflow: ellipsis;
 
 
 }

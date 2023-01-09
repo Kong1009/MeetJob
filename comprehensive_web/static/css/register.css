@@ -20,26 +20,6 @@
 	padding:50px 0;
 }
 
-.register-img{
-	width: 160px;
-}
-
-.register-img img{
-	width: 100%;
-	border-radius: 10px;
-}
-
-.re-form{
-	font-size: 1.5em;
-	font-weight: bold;
-	padding: 10px;
-}
-
-.re-form label{
-	width: 150px;
-}
-
-
 
 .btn_submit{
 	width: 100px;

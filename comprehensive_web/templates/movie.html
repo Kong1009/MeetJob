@@ -11,7 +11,25 @@ KH | 電影特區
 {% block content %}
 
 	<div class="cartoon-title">
+		<div class="cartoon-title">
+			<h1>電影查詢</h1>
+
+
+			
+			<div class="content-filter-div">
+
+				<form action="" method="get">
+					<div>
+						<input type="text" name="get-title" class="search-title">
+						<button class="btn btn-primary" type="submit" value="查詢">查詢</button>
+					</div>
+
+				</form>
+
+			</div>
 		
+
+		</div>
 
 	    <nav class="movie-filter">
 <!-- 	        <ul class="filter">
@@ -60,27 +78,27 @@ KH | 電影特區
 
 	        <ul class="filter">
 	            <li>年份：</li>
-	            <li><a href="/all_movie/2022/">2022</a></li>
-	            <li><a href="#">2021</a></li>
-	            <li><a href="#">2020</a></li>
-	            <li><a href="#">2019</a></li>
-	            <li><a href="#">2018</a></li>
-	            <li><a href="#">2017</a></li>
-	            <li><a href="#">2016</a></li>
-	            <li><a href="#">2015</a></li>
-	            <li><a href="#">2014</a></li>
-	            <li><a href="#">2013</a></li>  
-	            <li><a href="#">2012</a></li>
-	            <li><a href="#">2011</a></li>
-	            <li><a href="#">2010</a></li>
-	            <li><a href="#">2009</a></li>
-	            <li><a href="#">2008</a></li>
-	            <li><a href="#">2007-1970</a></li>
+	            <li><a href="/all_movie/?year=2022&get-title={{title}}">2022</a></li>
+	            <li><a href="/all_movie/?year=2021&get-title={{title}}">2021</a></li>
+	            <li><a href="/all_movie/?year=2020&get-title={{title}}">2020</a></li>
+	            <li><a href="/all_movie/?year=2019&get-title={{title}}">2019</a></li>
+	            <li><a href="/all_movie/?year=2018&get-title={{title}}">2018</a></li>
+	            <li><a href="/all_movie/?year=2017&get-title={{title}}">2017</a></li>
+	            <li><a href="/all_movie/?year=2016&get-title={{title}}">2016</a></li>
+	            <li><a href="/all_movie/?year=2015&get-title={{title}}">2015</a></li>
+	            <li><a href="/all_movie/?year=2014&get-title={{title}}">2014</a></li>
+	            <li><a href="/all_movie/?year=2013&get-title={{title}}">2013</a></li>
+	            <li><a href="/all_movie/?year=2012&get-title={{title}}">2012</a></li>
+	            <li><a href="/all_movie/?year=2011&get-title={{title}}">2011</a></li>
+	            <li><a href="/all_movie/?year=2010&get-title={{title}}">2010</a></li>
+	            <li><a href="/all_movie/?year=2009&get-title={{title}}">2009</a></li>
+	            <li><a href="/all_movie/?year=2008&get-title={{title}}">2008</a></li>
+	            <li><a href="/all_movie/?year=2022&get-title={{title}}">2007-1970</a></li>
 	        </ul>
 
 	        <hr>
 
-	        <ul class="filter">
+<!-- 	        <ul class="filter">
 	            <li>排序：</li>
 	            <li><a href="#">按更新</a></li>
 	            <li><a href="#">總人氣</a></li>
@@ -88,48 +106,36 @@ KH | 電影特區
 	            <li><a href="#">周人氣</a></li>
 	            <li><a href="#">日人氣</a></li>
 	            <li><a href="#">按評分</a></li>
-	        </ul>
+	        </ul> -->
 
 	    </nav>
 
-	    <div class="cartoon-title">
-			<h1>電影查詢</h1>
-
-
-			
-			<div class="content-filter-div">
-
-				<form action="" method="get">
-					<div>
-						<input type="text" name="get-title" class="search-title">
-						<input type="submit" value="查詢">
-					</div>
-
-				</form>
-
-			</div>
-		
-
-		</div>
+	    
 	</div>
 	
 	<div class="cartoon">
-		{% for data in movies %}
-		
-			<a href="{{ data.link }}" target="_blank">
-				<div class="cartoon-img">
-					<img src="{{ data.img_link }}">
-				</div>
+		{% if messages %}
+			{% for msg in messages %}
+				<strong style="color: red; font-size: 20px;">{{ msg }}</strong>
+			{% endfor %}
+		{% else %}
+			{% for data in movies %}
+			
+				<a href="{{ data.link }}" target="_blank">
+					<div class="cartoon-img">
+						<img src="{{ data.img_link }}">
+					</div>
 
-				<div class="cartoon-text">
-					<p>{{ data.title }}</p>
-					<p>人氣：{{ data.evaluation }}萬</p>
-					<p>{{ data.date }}</p>
-				</div>
+					<div class="cartoon-text">
+						<p>{{ data.title }}</p>
+						<p>人氣：{{ data.evaluation }}萬</p>
+						<p>{{ data.date }}</p>
+					</div>
 
-			</a>
-		
-		{% endfor %}
+				</a>
+			
+			{% endfor %}
+		{% endif %}
 	</div>
 
 
@@ -138,17 +144,17 @@ KH | 電影特區
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item">
 	      	{% if movies.has_previous %}
-		      <a class="page-link" href="?page={{ movies.previous_page_number }}" aria-label="Previous">
+		      <a class="page-link" href="?page={{ movies.previous_page_number }}&get-title={{title}}&year={{year}}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		     {% endif %}
 		    </li>
 		    {% for i in nums %}
-		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}&get-title={{title}}&year={{year}}">{{ forloop.counter }}</a></li>
 		    {% endfor %}
 		    <li class="page-item">
 		    	{% if movies.has_next %}
-		      <a class="page-link" href="?page={{ movies.next_page_number }}">下一頁</a>
+		      <a class="page-link" href="?page={{ movies.next_page_number }}&get-title={{title}}&year={{year}}">下一頁</a>
 		    	{% endif %}
 		    </li>
 		    <li class="page-item disabled"><a class="page-link">第{{ venues.number }}頁 | 共{{ venues.paginator.num_pages }}頁</a></li>

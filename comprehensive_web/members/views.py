@@ -15,79 +15,80 @@ def test(request):
 
 
 
-def login(request):
-    msg = ""
-    account = ""
-    password = ""
-    if request.method == 'POST':
-        account = request.POST['email']
-        password = request.POST['pwd']
-        postform = forms.PostForm(request.POST)
-        if postform.is_valid():
-            password = hashlib.sha3_256(password.encode(encoding='utf-8')).hexdigest()
-            
-            obj = Member.objects.filter(email = account,
-                                        password = password).count()
-            
-            if obj == 1:
-                request.session['account'] = account
-                request.session['isAlive'] = True
-                
-                return HttpResponseRedirect('/')
-                
-            
-            else:
-                messages.success(request, ("帳密錯誤請重新輸入"))
-                # msg = "帳密錯誤請重新輸入"
-                return render(request, 'login.html', locals())
-        else:
-            messages.success(request, ("驗證未通過!X﹏X"))
-            postform = forms.PostForm()
-            return render(request, 'login.html', {'postform': postform})
-        
-    else:
-        if "account" in request.session and "isAlive" in request.session:
-            return HttpResponseRedirect("/all_cartoon")
-        
-        else:
-            postform = forms.PostForm()
-            messages.success(request, ("歡迎登入ヽ(✿ﾟ▽ﾟ)ノ"))
-            msg = "歡迎光臨"
-            return render(request, 'login.html', locals())
 # def login(request):
 #     msg = ""
-    
-#     if "email" in request.POST:
-        
+#     account = ""
+#     password = ""
+#     if request.method == 'POST':
 #         account = request.POST['email']
 #         password = request.POST['pwd']
-        
-        
-#         password = hashlib.sha3_256(password.encode(encoding='utf-8')).hexdigest()
-        
-#         obj = Member.objects.filter(email = account,
-#                                     password = password).count()
-        
-#         if obj == 1:
-#             request.session['account'] = account
-#             request.session['isAlive'] = True
+#         postform = forms.PostForm(request.POST)
+#         if postform.is_valid():
+#             password = hashlib.sha3_256(password.encode(encoding='utf-8')).hexdigest()
             
-#             return HttpResponseRedirect('/')
+#             obj = Member.objects.filter(email = account,
+#                                         password = password).count()
             
-        
+#             if obj == 1:
+#                 request.session['account'] = account
+#                 request.session['isAlive'] = True
+                
+#                 return HttpResponseRedirect('/')
+                
+            
+#             else:
+#                 messages.success(request, ("帳密錯誤請重新輸入"))
+#                 # msg = "帳密錯誤請重新輸入"
+#                 return render(request, 'login.html', locals())
 #         else:
-#             messages.success(request, ("帳密錯誤請重新輸入"))
-#             # msg = "帳密錯誤請重新輸入"
-#             return render(request, 'login.html', locals())
-    
+#             messages.success(request, ("驗證未通過!X﹏X"))
+#             postform = forms.PostForm()
+#             return render(request, 'login.html', {'postform': postform})
+        
 #     else:
 #         if "account" in request.session and "isAlive" in request.session:
 #             return HttpResponseRedirect("/all_cartoon")
         
 #         else:
+#             postform = forms.PostForm()
 #             messages.success(request, ("歡迎登入ヽ(✿ﾟ▽ﾟ)ノ"))
 #             msg = "歡迎光臨"
 #             return render(request, 'login.html', locals())
+
+def login(request):
+    msg = ""
+    
+    if "email" in request.POST:
+        
+        account = request.POST['email']
+        password = request.POST['pwd']
+        
+        
+        password = hashlib.sha3_256(password.encode(encoding='utf-8')).hexdigest()
+        
+        obj = Member.objects.filter(email = account,
+                                    password = password).count()
+        
+        if obj == 1:
+            request.session['account'] = account
+            request.session['isAlive'] = True
+            
+            return HttpResponseRedirect('/')
+            
+        
+        else:
+            messages.success(request, ("帳密錯誤請重新輸入"))
+            # msg = "帳密錯誤請重新輸入"
+            return render(request, 'login.html', locals())
+    
+    else:
+        if "account" in request.session and "isAlive" in request.session:
+            return HttpResponseRedirect("/all_cartoon")
+        
+        else:
+            messages.success(request, ("歡迎登入ヽ(✿ﾟ▽ﾟ)ノ"))
+            msg = "歡迎光臨"
+            return render(request, 'login.html', locals())
 
 
 def register(request):
