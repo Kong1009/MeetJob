@@ -8,6 +8,7 @@ class CarToon(models.Model):
     item = models.CharField(max_length=50) # 類別
     year = models.CharField(max_length=50) # 年份
     popularity = models.IntegerField() # 人氣
+    show_popularity = models.CharField(max_length=100) # 人氣
     director = models.CharField(max_length=20) # 導演
     area = models.CharField(max_length=20) # 地區
     

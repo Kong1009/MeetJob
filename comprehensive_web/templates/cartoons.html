@@ -16,32 +16,48 @@ KH | 動漫特區
 		<div class="content-filter-div">
 			<form action="" method="get">
 				<div>
-					<input type="text" name="get-title" class="search-title">
-					<input type="submit" value="查詢">
+					<input type="text" name="get-title" class="search-title" value="{{title}}">
+					<button type="submit" class="btn btn-primary" value="查詢">查詢</button>
 				</div>
+
+				<label for="select-sort">排序方式</label>
+	        	<select class="form-select" id="select-sort" name="select-sort">
+		        	<option value="uid" selected>預設</option>
+		        	<optgroup label="人氣">
+			        	<option value="high">人氣高 > 低</option>
+			        	<option value="low">人氣低 > 高</option>
+		        	</optgroup>
+		        	<optgroup label="日期">
+		        		<option value="news">新 > 舊</option>
+		        		<option value="old">舊 > 新</option>
+		        	</optgroup>
+
+		        </select>
 			</form>
 
 			<ul class="filter">
 	            <li>年份：</li>
-	            <li><a href="/cartoon/?year=2022&get-title={{title}}">2022</a></li>
-	            <li><a href="/cartoon/?year=2021&get-title={{title}}">2021</a></li>
-	            <li><a href="/cartoon/?year=2020&get-title={{title}}">2020</a></li>
-	            <li><a href="/cartoon/?year=2019&get-title={{title}}">2019</a></li>
-	            <li><a href="/cartoon/?year=2018&get-title={{title}}">2018</a></li>
-	            <li><a href="/cartoon/?year=2017&get-title={{title}}">2017</a></li>
-	            <li><a href="/cartoon/?year=2016&get-title={{title}}">2016</a></li>
-	            <li><a href="/cartoon/?year=2015&get-title={{title}}">2015</a></li>
-	            <li><a href="/cartoon/?year=2014&get-title={{title}}">2014</a></li>
-	            <li><a href="/cartoon/?year=2013&get-title={{title}}">2013</a></li>
-	            <li><a href="/cartoon/?year=2012&get-title={{title}}">2012</a></li>
-	            <li><a href="/cartoon/?year=2011&get-title={{title}}">2011</a></li>
-	            <li><a href="/cartoon/?year=2010&get-title={{title}}">2010</a></li>
-	            <li><a href="/cartoon/?year=2009&get-title={{title}}">2009</a></li>
-	            <li><a href="/cartoon/?year=2008&get-title={{title}}">2008</a></li>
+	            <li><a href="/cartoon/?year=2022&get-title={{title}}&select-sort={{selet}}">2022</a></li>
+	            <li><a href="/cartoon/?year=2021&get-title={{title}}&select-sort={{selet}}">2021</a></li>
+	            <li><a href="/cartoon/?year=2020&get-title={{title}}&select-sort={{selet}}">2020</a></li>
+	            <li><a href="/cartoon/?year=2019&get-title={{title}}&select-sort={{selet}}">2019</a></li>
+	            <li><a href="/cartoon/?year=2018&get-title={{title}}&select-sort={{selet}}">2018</a></li>
+	            <li><a href="/cartoon/?year=2017&get-title={{title}}&select-sort={{selet}}">2017</a></li>
+	            <li><a href="/cartoon/?year=2016&get-title={{title}}&select-sort={{selet}}">2016</a></li>
+	            <li><a href="/cartoon/?year=2015&get-title={{title}}&select-sort={{selet}}">2015</a></li>
+	            <li><a href="/cartoon/?year=2014&get-title={{title}}&select-sort={{selet}}">2014</a></li>
+	            <li><a href="/cartoon/?year=2013&get-title={{title}}&select-sort={{selet}}">2013</a></li>
+	            <li><a href="/cartoon/?year=2012&get-title={{title}}&select-sort={{selet}}">2012</a></li>
+	            <li><a href="/cartoon/?year=2011&get-title={{title}}&select-sort={{selet}}">2011</a></li>
+	            <li><a href="/cartoon/?year=2010&get-title={{title}}&select-sort={{selet}}">2010</a></li>
+	            <li><a href="/cartoon/?year=2009&get-title={{title}}&select-sort={{selet}}">2009</a></li>
+	            <li><a href="/cartoon/?year=2008&get-title={{title}}&select-sort={{selet}}">2008</a></li>
 	            
 	        </ul>
 
 	        <hr>
+
+
 
 <!-- 				<div>
 					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -54,29 +70,38 @@ KH | 動漫特區
 		
 
 	</div>
+
+	{% if messages %}
+			{% for msg in messages %}
+				<strong style="color: red; font-size: 20px;">{{ msg }}</strong>
+			{% endfor %}
+	{% else %}
 	
 	<div class="cartoon">
 		{% for row in data %}
-		
-			<a href="{{ row.link }}">
-				<div class="cartoon-img">
-					<img src="{{ row.img_link }}">
-				</div>
 
-				<div class="cartoon-text">
-					<p>{{ row.subject }}</p>
-					{% if row.popularity == 0 %}
-						<p>人氣：統計中</p>
-					{% else %}
-						<p>人氣：{{ row.popularity }} 萬</p>
-					{% endif %}
-					<p>{{ row.year }}</p>
-				</div>
+			<div class="content-div">
+				<a href="{{ row.link }}">
+					<div class="cartoon-img">
+						<img src="{{ row.img_link }}">
+					</div>
 
-			</a>
+					<div class="cartoon-text">
+						<p class="film-title">{{ row.subject }}</p>
+						{% if row.popularity == 0 %}
+							<p>人氣：統計中</p>
+						{% else %}
+							<p>人氣：{{ row.show_popularity }}</p>
+						{% endif %}
+						<p>{{ row.year }}</p>
+					</div>
+
+				</a>
+			</div>
 		
 		{% endfor %}
 	</div>
+	{% endif %}
 
 
 
@@ -87,23 +112,22 @@ KH | 動漫特區
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item">
 	      	{% if data.has_previous %}
-		      <a class="page-link" href="?page={{ data.previous_page_number }}" aria-label="Previous">
+		      <a class="page-link" href="?page={{ data.previous_page_number }}&get-title={{title}}&year={{year}}&select-sort={{select}}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		     {% endif %}
 		    </li>
 		    {% for i in nums %}
-		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}&get-title={{title}}&year={{year}}&select-sort={{select}}">{{ forloop.counter }}</a></li>
 		    {% endfor %}
 		    <li class="page-item">
 		    	{% if data.has_next %}
-		      <a class="page-link" href="?page={{ data.next_page_number }}">下一頁</a>
+		      <a class="page-link" href="?page={{ data.next_page_number }}&get-title={{title}}&year={{year}}&select-sort={{select}}">下一頁</a>
 		    	{% endif %}
 		    </li>
 		    <li class="page-item disabled"><a class="page-link">第{{ venues.number }}頁 | 共{{ venues.paginator.num_pages }}頁</a></li>
 		  </ul>
 		</nav>
 	</div>
-
 
 {% endblock %}

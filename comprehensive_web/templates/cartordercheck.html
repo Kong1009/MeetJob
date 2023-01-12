@@ -14,23 +14,24 @@ KH | 訂單明細
 	<div style="margin-top: 50px"></div>
 
 	<div id="maindiv">
+		
 
 		{% if nosearch == 1 %}
 			<form action="/cartordercheck/" method="get">
 				<p class="order-check-title"><strong>訂單查詢</strong></p>
-				<table border="0" align="center" cellpadding="10" cellspacing="0">
+				<table class="table table-dark" border="0" align="center" cellpadding="10" cellspacing="0">
 					<tr>
 						<td>訂單編號</td>
-						<td><input type="text" name="orderid" required></td>
+						<td><input type="number" name="orderid" required></td>
 					</tr>
 
 					<tr>
 						<td>電子郵件</td>
-						<td><input name="customemail" type="text" required></td>
+						<td><input name="customemail" type="text" value="{{customemail}}" required></td>
 					</tr>
 
 					<tr>
-						<td colspan="2"><input type="submit" value="查詢"></td>
+						<td colspan="2"><button class="btn btn-info" type="submit" value="查詢">查詢</button></td>
 					</tr>
 				</table>
 			</form>

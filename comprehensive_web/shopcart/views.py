@@ -36,7 +36,7 @@ goodsTitle = list() # 存放放入購物車的商品名稱
 # 這個是加入到購物車中，並未將商品資訊寫入至資料庫中
 def addtocart(request, ctype = None, productid = None):
     global cartlist
-    
+    # amount = request.GET.get['amount']
     if ctype == "add": # 將商品加入至購物車中
         product = Product.objects.get(id = productid) # 會用get 是因為帶入的產品ID 一定有在資料表中(如果不確定要用filter)
         flag = True # 預設購物車中沒有相同的商品，表示購物車內這個商品不存在
@@ -45,6 +45,7 @@ def addtocart(request, ctype = None, productid = None):
         for unit in cartlist:
             if product.subject == unit[0]: # 表示有這個商品
                 unit[2] = str(int(unit[2]) + 1) # 數量在加1
+                # unit[2] = str(int(unit[2]) + amount) # 數量在加1
                 unit[3] = str(int(unit[3]) + int(product.price)) # 累計金額
                 flag = False # 表示商品之前已經加入至購物車中
                 break
@@ -59,7 +60,7 @@ def addtocart(request, ctype = None, productid = None):
             templist = list()
             templist.append(product.subject)
             templist.append(str(product.price))
-            templist.append('1')
+            templist.append( '1')
             templist.append(str(product.price))
             cartlist.append(templist)
             
@@ -135,7 +136,7 @@ def cartorder(request):
         member_data = Member.objects.get(email = request.session['account'])
 
 
-        customname = member_data.username # 抓取帳號名稱
+        name = member_data.username # 抓取帳號名稱
         phone = customphone
         address = customaddress
         email = request.session['account']
@@ -164,9 +165,10 @@ def cartok(request):
     customemail = request.POST.get('cuEmail', '')
     paytype = request.POST.get('payType')
     
-    phone_pattern = r'^09\d{2}-\d{3}-\d{3}'
+    phone_pattern = r'^09\d{2}\d{3}\d{3}'
     match = re.search(phone_pattern, customphone)
     
+
     if match:
         # 新增資料至訂單資料表中(資料庫)
         unitorder = models.OrdersModel.objects.create(subtotal = total, # 商品總額
@@ -179,7 +181,8 @@ def cartok(request):
                                                       paytype = paytype)
     else:
         messages.success(request, ('電話號碼格式錯誤!請重新輸入'))
-        return render(request, 'cartorder.html', locals())
+        return redirect('/cartorder/')
+        # return render(request, 'cartorder.html', locals())
     
     # 要將各個的商品新增到 明細表
     for unit in cartlist:
@@ -203,7 +206,7 @@ def cartok(request):
         return redirect('/creditcard/')
     else:        
         return render(request, 'cartok.html', locals())
-    
+
     
 
 # 訂單完成後，可以做訂單查詢用的
@@ -211,15 +214,32 @@ def cartordercheck(request):
     orderid = request.GET.get('orderid', '')
     customemail = request.GET.get('customemail', '')
     
-    if orderid == '' and customemail == '':
-        nosearch = 1
-    else:
-        order = models.OrdersModel.objects.filter(id=orderid).first() # 抓第一筆資料
-    
-        if order == None:
-            notfound = 1
+    if 'account' in request.session and 'isAlive' in request.session:
+        customemail = request.session['account']
+        orderid = request.GET.get('orderid', '')
+        if orderid == '':
+            nosearch = 1
         else:
-            details = models.DetailModel.objects.filter(dorder=order)
+            order = models.OrdersModel.objects.filter(id=orderid).first() # 抓第一筆資料
+            
+            if order == None:
+                notfound = 1
+            else:
+                details = models.DetailModel.objects.filter(dorder=order)
+    else:
+        if orderid == '' and customemail == '':
+            nosearch = 1
+        else:
+            order = models.OrdersModel.objects.filter(id=orderid).first() # 抓第一筆資料
+            e = order.customeremail
+            if order == None:
+                notfound = 1
+            else:
+                details = models.DetailModel.objects.filter(dorder=order)
+                
+    # if order.customeremail != customemail:
+    #     messages.success(request, ('訂單Email不正確!請重新輸入'))
+    # else:
     return render(request, 'cartordercheck.html', locals())
         
     
@@ -232,6 +252,10 @@ def myorder(request):
         
         # order = models.OrdersModel.objects.filter(customeremail = email)
         order = models.OrdersModel.objects.filter(customeremail = email)
+        
+        details = models.DetailModel.objects.all()
+        
+
         return render(request, 'myorder.html', locals())
     else:
         return HttpResponseRedirect('/login')
@@ -256,13 +280,13 @@ def ECPayCredit(request):
     'TotalAmount': orderTotal,
     'TradeDesc': 'Kong-MeetJob訂單',
     'ItemName': title,
-    'ReturnURL': 'https://www.lccnet.com.tw/lccnet', # 回傳網址
+    'ReturnURL': 'https://216c-118-232-167-68.ngrok.io', # 回傳網址
     'ChoosePayment': 'Credit',
     'ClientBackURL': 'https://www.lccnet.com.tw/lccnet', # 回到客戶端
     'ItemURL': 'https://www.ecpay.com.tw/item_url.php',
     'Remark': '交易備註',
     'ChooseSubPayment': '',
-    'OrderResultURL': 'https://www.lccnet.com.tw/lccnet', # 訂單完成導回此處
+    'OrderResultURL': 'https://216c-118-232-167-68.ngrok.io', # 訂單完成導回此處
     'NeedExtraPaidInfo': 'Y',
     'DeviceSource': '',
     'IgnorePayment': '',
@@ -338,3 +362,15 @@ def ECPayCredit(request):
         # print(html)
     except Exception as error:
         print('An exception happened: ' + str(error))
+        
+# def test(request):
+#     # email = request.session['account']
+#     o = models.OrdersModel.objects.filter(id='1').first()
+#     # orderid = o.id
+#     detail = models.DetailModel.objects.filter(dorder=o)
+#     # order = models.OrdersModel.objects.get(customeremail = email)
+#     # orderid = order.id
+#     # for i in orderid:
+#     #     details = models.DetailModel.objects.filter(dorder=i)
+    
+#     return render(request, 'test.html', locals())

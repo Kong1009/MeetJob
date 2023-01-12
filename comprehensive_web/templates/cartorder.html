@@ -10,27 +10,20 @@ KH | 購物車
 
 
 
+{% block js %}
+<!-- <script type="text/javascript">
+	function checkPayType(){
+		var paytype = document.ElementsByName('payType')[0].value;
 
+		if paytype == '信用卡':
+
+	}
+</script> -->
+{% endblock %}
 
 
 {% block content %}
-	{% block js %}
-		<script type="text/javascript">
-			$(document).ready(function(){
-			/* 預設勾選童帳單資訊時隱藏填寫欄位，否則顯現 */
-				$("#shipArea").hide("fast");
 
-				/* 判斷是否勾選同帳單資訊 */
-				$("#hideShip").click(function(){
-					if ($("#hideShip").is(":checked")){
-						$("#shipArea").hide("fast");					
-					}else{					
-						$("#shipArea").slideDown();
-					}
-				})
-			});
-		</script>
-	{% endblock %}
 
 
 
@@ -48,7 +41,7 @@ KH | 購物車
 
 	<div id="maindiv">
 
-		<form action="/cartok/" method="post" name="form1" id="form1" onclick="">
+		<form action="/cartok/" method="post" name="form1" id="form1" >
 			{% csrf_token %}
 
 			<p class="cartorder-title">訂單內容確認</p>
@@ -115,12 +108,12 @@ KH | 購物車
 
 					<tr>
 						<td width="100" align="cneter"><strong>姓名</strong></td>
-						<td><input type="text" name="cuName" value="{{ customname }}" required></td>
+						<td><input type="text" name="cuName" value="{{ name }}" required></td>
 					</tr>
 
 					<tr>
 						<td width="100" align="cneter"><strong>電話</strong></td>
-						<td><input type="text" placeholder="09xx-xxx-xxx" name="cuPhone" value="{{ phone }}" required></td>
+						<td><input type="text" placeholder="09xxxxxxxx" name="cuPhone" value="{{ phone }}" required></td>
 					</tr>
 
 					<tr>

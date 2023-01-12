@@ -1,0 +1,93 @@
+#test-cart{
+	position: fixed;
+	right: 0;
+	top: 50%;
+	width: 100px;
+}
+
+#test-cart img{
+	width: 100%;
+}
+.myshop_div{
+	display: flex;
+	width: 73%;
+	margin:10px auto;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-content: center;
+}
+
+.mycard{
+	width: 350px;
+	height: 650px;
+	margin: 15px;
+
+}
+
+.mycard-img{
+	width: 100%;
+	height: 40%;
+}
+
+.mycard-img img{
+	width: 100%;
+	height: 100%;
+}
+
+
+.mycard-content{
+	width: 100%;
+	height: 60%;
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: center;
+	flex-wrap: wrap;
+}
+
+
+.shop_select{
+	width: 80%;
+	margin:30px auto;
+	font-size: 20px;
+
+
+}
+
+
+.shop_select label{
+	width: 120px;
+}
+
+.card-price{
+	font-size: 30px;
+	font-weight: bold;
+	color: red;
+}
+
+.no-goods-msg{
+	width: 90%;
+	margin:0 auto;
+	color: red;
+	text-align: center;
+}
+
+.product-title{
+	height: 50px;
+	margin: 10px auto;
+	font-weight: bold;
+	overflow: hidden;
+
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.product-info{
+	display: -webkit-box;
+	height: 75px;
+	overflow: hidden;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Contact
+from members.models import Member
 from django.contrib import messages
 # Create your views here.
 
@@ -10,11 +11,12 @@ def contact(request, sendmsg=None):
     title = ''
     username = ''
     info = ''
+
     if sendmsg == 'sendmsg':
         if 'title' in request.POST and 'username' in request.POST:
             title = request.POST['title']
-            username = request.POST['username']
             info = request.POST['info']
+            username = request.POST['username']
     
             data = Contact.objects.create(title = title, username = username, info = info)
             messages.success(request, ('您的訊息已收到'))
@@ -32,4 +34,4 @@ def contact(request, sendmsg=None):
     else:
         
         messages.success(request, ('您好!'))
-        return render(request, 'contact.html')
+    return render(request, 'contact.html')

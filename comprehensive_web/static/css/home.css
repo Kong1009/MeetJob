@@ -127,31 +127,36 @@
 	text-decoration: none;
 }
 
-.random-image{
-	width: 100%;
-}
 
 .random-program{
 	display: flex;
 	width: 73%;
 	margin:0 auto;
 	justify-content: space-around;
-	align-items: center;
+	/*align-items: center;*/
 	padding: 0 0 50px 0;
 }
 
+.random-image{
+	width: 100%;
+	height: 95%;
+}
+
+
+.random-image img{
+	width: 100%;
+	height: 100%;
+}
+
+
 .c-content{
-	width: 20%;
+	width: 450px;
+	height: 500px;
 	padding:0 15px;
 	position: static;
 
 }
 
-
-
-.random-image img{
-	width: 100%;
-}
 
 
 

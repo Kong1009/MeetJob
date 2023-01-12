@@ -6,11 +6,13 @@ KH | 綜合商店
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="/static/css/product.css">
+<link rel="stylesheet" type="text/css" href="/static/css/shop.css">
 {% endblock %}
 
 {% block content %}
-
+	<div id="test-cart">
+		<a href="/cart"><img src="/static/images/shopcart.png"></a>
+	</div>
 
 	<form action="" method="get" class="shop_select">
 		<div>
@@ -54,17 +56,18 @@ KH | 綜合商店
 	</div>
 	<div class="myshop_div">
 		{% for row in data %}
-		<div class="card mycard" style="width: 18rem;">
-					<div>
+		<div class="card mycard">
+			<div class="mycard-img">
 			  <img src="{{ row.img_link }}" class="card-img-top" alt="...">
-			  <div class="card-body">
+		  	</div>
+			  <div class="card-body mycard-content">
 			    <h5 class="card-title product-title">{{ row.subject }}</h5>
 			    <p class="card-text product-info">{{ row.info }}</p>
-			    <p class="card-text card-price">NT$ {{ row.price }}</p>
+			    <p class="card-text card-price">NT$ {{ row.price }}</p>		    
+			    <!-- <a href="/addtocart/add/{{ row.id }}" class="btn btn-primary">加入購物車</a> -->
+			    <button onClick="window.location='/addtocart/add/{{ row.id }}'" class="btn btn-primary">加入購物車</button>
 			    <a href="{{ row.link }}" target="_blank" class="btn btn-primary">前往賣場</a>
-			    <a href="/addtocart/add/{{ row.id }}" class="btn btn-primary">加入購物車</a>
 			  </div>
-			</div>
 		</div>
 		{% endfor %}
 	</div>

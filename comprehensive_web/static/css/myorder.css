@@ -2,6 +2,11 @@ h1{
 	margin-left: 20%;
 }
 
+.order-tb{
+	width: 55%;
+	margin: 0 auto;
+}
+
 .order-item{
 	font-size: 24px;
 	text-align: center;
@@ -9,5 +14,6 @@ h1{
 
 .order-content{
 	font-size: 20px;
+	text-align: center;
 
 }

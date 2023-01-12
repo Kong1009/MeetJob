@@ -8,10 +8,10 @@ from .models import Member
 import hashlib
 # Create your views here.
 
-def test(request):
-        postform = forms.PostForm()
+# def test(request):
+#         postform = forms.PostForm()
         
-        return render(request, 'test.html', locals())
+#         return render(request, 'test.html', locals())
 
 
 
