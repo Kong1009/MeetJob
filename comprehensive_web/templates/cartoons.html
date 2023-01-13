@@ -71,12 +71,15 @@ KH | 動漫特區
 
 	</div>
 
-	{% if messages %}
+	<div class="sendmsg">
+		{% if messages %}
 			{% for msg in messages %}
-				<strong style="color: red; font-size: 20px;">{{ msg }}</strong>
-			{% endfor %}
+				<strong>{{ msg }}</strong>
+		{% endfor %}
+	</div>
 	{% else %}
 	
+
 	<div class="cartoon">
 		{% for row in data %}
 

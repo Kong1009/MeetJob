@@ -1,4 +1,9 @@
-
+.sendmsg{
+	color: red;
+	font-size: 30px;
+	display: flex;
+	justify-content: center;
+}
 .cartoon-title{
 	display: block;
 	width: 68%;
