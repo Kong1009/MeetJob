@@ -24,12 +24,25 @@ def GroceryStore(request):
         # 全部都搜尋
         if (item != "0" and len(goodName) != 0 and len(priceS) != 0 and len(priceE) != 0):
             data = data.filter(item = item,
-                                          subject__icontains = goodName,
-                                          price__gte = priceS,
-                                          price__lte=priceE,
+                                subject__icontains = goodName,
+                                price__gte = priceS,
+                                price__lte=priceE,
 
-                                          )
+                                )
+        
+        # 搜尋種類 + 商品名稱 + 最小
+        elif (item != "0" and len(goodName) != 0 and len(priceS) != 0 and len(priceE) == 0):
+            data = data.filter(item = item,
+                                subject__icontains=goodName,
+                                price__gte=priceS
+                                )   
             
+        # 搜尋種類 + 商品名稱 + 最大
+        elif (item != "0" and len(goodName) != 0 and len(priceS) == 0 and len(priceE) != 0):
+            data = data.filter(item = item,
+                                subject__icontains=goodName,
+                                price__gte=priceE
+                                )   
             
         # 搜尋種類 + 商品名稱
         elif (item != "0" and len(goodName) != 0 and len(priceS) == 0 and len(priceE) == 0):
