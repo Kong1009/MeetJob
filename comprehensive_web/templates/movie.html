@@ -73,12 +73,15 @@ KH | 電影特區
 	
 	<div class="cartoon">
 
-		<div class="sendmsg">
+
 			{% if messages %}
 				{% for msg in messages %}
+						<div class="sendmsg">
 					<strong>{{ msg }}</strong>
-			{% endfor %}
-		</div>
+							</div>
+				{% endfor %}
+
+
 		{% else %}
 			{% for data in movies %}
 			<div class="content-div">
