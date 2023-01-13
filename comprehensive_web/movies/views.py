@@ -6,7 +6,7 @@ from .models import Movies
 def all_movies(request, year=None):
     title = ""
     year = ""
-    select = "id"
+    select = "uid"
     movies = Movies.objects.all()
     
     # 判斷 是否有值帶入
@@ -14,7 +14,7 @@ def all_movies(request, year=None):
     # if 'get-title' in request.GET:
         title = request.GET.get('get-title', '')
         year = request.GET.get('year', '')
-        select = request.GET.get('select-sort', 'id')
+        select = request.GET.get('select-sort', 'uid')
         
         if len(title) != 0 and len(year) != 0:
             movies = movies.filter(title__icontains = title,

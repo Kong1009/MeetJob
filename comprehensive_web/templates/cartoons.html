@@ -20,16 +20,16 @@ KH | 動漫特區
 					<button type="submit" class="btn btn-primary" value="查詢">查詢</button>
 				</div>
 
-				<label for="select-sort">排序方式</label>
-	        	<select class="form-select" id="select-sort" name="select-sort">
-		        	<option value="uid">預設</option>
+				<label for="select_sort">排序方式</label>
+	        	<select class="form-select" id="select_sort" name="select_sort">
+		        	<option value="uid" {% if select == 'uid' %}selected{% endif %}>預設</option>
 		        	<optgroup label="人氣">
-			        	<option value="high" >人氣高 > 低</option>
-			        	<option value="low">人氣低 > 高</option>
+			        	<option value="high" {% if select == 'high' %}selected{% endif %}>人氣 高 > 低</option>
+			        	<option value="low" {% if select == 'low' %}selected{% endif %}>人氣 低 > 高</option>
 		        	</optgroup>
 		        	<optgroup label="日期">
-		        		<option value="news">新 > 舊</option>
-		        		<option value="old">舊 > 新</option>
+		        		<option value="news" {% if select == 'news' %}selected{% endif %}>日期 新 > 舊</option>
+		        		<option value="old" {% if select == 'old' %}selected{% endif %}>日期 舊 > 新</option>
 		        	</optgroup>
 
 		        </select>
@@ -81,7 +81,7 @@ KH | 動漫特區
 		{% for row in data %}
 
 			<div class="content-div">
-				<a href="{{ row.link }}">
+				<a href="{{ row.link }}" target="_blank">
 					<div class="cartoon-img">
 						<img src="{{ row.img_link }}">
 					</div>

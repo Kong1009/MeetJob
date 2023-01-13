@@ -26,14 +26,14 @@ KH | 電影特區
 
 					<label for="select-sort">排序方式</label>
 		        	<select class="form-select" id="select-sort" name="select-sort">
-			        	<option value="uid" selected>預設</option>
+			        	<option value="uid" {% if select == 'uid' %}selected{% endif %}>預設</option>
 			        	<optgroup label="評價">
-				        	<option value="evaluation_high">高 > 低</option>
-				        	<option value="evaluation_low">低 > 高</option>
+				        	<option value="evaluation_high" {% if select == 'evaluation_high' %}selected{% endif %}>評價 高 > 低</option>
+				        	<option value="evaluation_low" {% if select == 'evaluation_low' %}selected{% endif %}>評價 低 > 高</option>
 			        	</optgroup>
 			        	<optgroup label="日期">
-			        		<option value="news">新 > 舊</option>
-			        		<option value="old">舊 > 新</option>
+			        		<option value="news" {% if select == 'news' %}selected{% endif %}>日期 新 > 舊</option>
+			        		<option value="old" {% if select == 'old' %}selected{% endif %}>日期 舊 > 新</option>
 		        		</optgroup>
 
 			        </select>
@@ -44,48 +44,6 @@ KH | 電影特區
 		</div>
 
 	    <nav class="movie-filter">
-<!-- 	        <ul class="filter">
-	            <li>類型：</li>
-	            <li><a href="#">全部</a></li>
-	            <li><a href="#">驚悚片</a></li>
-	            <li><a href="#">音樂片</a></li>
-	            <li><a href="#">運動片</a></li>
-	            <li><a href="#">西部片</a></li>
-	            <li><a href="#">紀錄片</a></li>
-	            <li><a href="#">科幻片</a></li>
-	            <li><a href="#">犯罪片</a></li>
-	            <li><a href="#">災難片</a></li>
-	            <li><a href="#">歷史片</a></li>
-	            <li><a href="#">戰爭片</a></li>
-	            <li><a href="#">懸疑片</a></li>
-	            <li><a href="#">愛情片</a></li>
-	            <li><a href="#">恐怖片</a></li>
-	            <li><a href="#">寫真片</a></li>
-	            <li><a href="#">家庭片</a></li>
-	            <li><a href="#">奇幻片</a></li>
-	            <li><a href="#">喜劇片</a></li>
-	            <li><a href="#">動畫片</a></li>
-	            <li><a href="#">劇情片</a></li>
-	            <li><a href="#">冒險面</a></li>
-	            <li><a href="#">傳紀片</a></li>
-	        </ul>
-
-	        <hr>
-
-	        <ul class="filter">
-	            <li>地區：</li>
-	            <li><a href="#">全部</a></li>
-	            <li><a href="#">香港</a></li>
-	            <li><a href="#">韓國</a></li>
-	            <li><a href="#">海外</a></li>
-	            <li><a href="#">泰國</a></li>
-	            <li><a href="#">歐美</a></li>
-	            <li><a href="#">日本</a></li>
-	            <li><a href="#">大陸</a></li>
-	            <li><a href="#">台灣</a></li>
-	            <li><a href="#">印度</a></li>  
-	        </ul> -->
-
 	        <hr>
 
 	        <ul class="filter">
@@ -107,18 +65,6 @@ KH | 電影特區
 	            <li><a href="/all_movie/?year=2008&get-title={{title}}&select-sort={{select}}">2008</a></li>
 
 	        </ul>
-
-	        <hr>
-
-<!-- 	        <ul class="filter">
-	            <li>排序：</li>
-	            <li><a href="#">按更新</a></li>
-	            <li><a href="#">總人氣</a></li>
-	            <li><a href="#">月人氣</a></li>
-	            <li><a href="#">周人氣</a></li>
-	            <li><a href="#">日人氣</a></li>
-	            <li><a href="#">按評分</a></li>
-	        </ul> -->
 
 	    </nav>
 

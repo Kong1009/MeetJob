@@ -30,15 +30,15 @@ KH | 綜合商店
 		<div>
 			<label for="item">商品種類</label>
 			<select id="item" name="item" value={{item}} class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-				<option value='0'>預設</option>
-				<option value='1'>家電</option>
-				<option value='2'>手機</option>
-				<option value="3">衣服</option>
-				<option value="4">電腦周邊</option>
-				<option value="5">外套</option>
-				<option value="6">玩具</option>
-				<option value="7">公仔</option>
-				<option value="8">生活用品</option>
+				<option value='0' {% if item == '0' %}selected{% endif %}>預設</option>
+				<option value='1' {% if item == '1' %}selected{% endif %}>家電</option>
+				<option value='2' {% if item == '2' %}selected{% endif %}>手機</option>
+				<option value="3" {% if item == '3' %}selected{% endif %}>衣服</option>
+				<option value="4" {% if item == '4' %}selected{% endif %}>電腦周邊</option>
+				<option value="5" {% if item == '5' %}selected{% endif %}>外套</option>
+				<option value="6" {% if item == '6' %}selected{% endif %}>玩具</option>
+				<option value="7" {% if item == '7' %}selected{% endif %}>公仔</option>
+				<option value="8" {% if item == '8' %}selected{% endif %}>生活用品</option>
 			</select>
 		</div>
 
