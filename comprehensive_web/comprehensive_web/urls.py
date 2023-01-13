@@ -1,18 +1,3 @@
-"""comprehensive_web URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
 
@@ -20,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
 from movies.views import all_movies
-from cartoon.views import all_cartoon, test
+from cartoon.views import all_cartoon
 from members.views import member_manage, register,  logout, login, forget_pwd
 from shop.views import GroceryStore
 from shopcart.views import addtocart, cart, cartorder, cartok, cartordercheck, myorder, ECPayCredit
@@ -35,13 +20,9 @@ urlpatterns = [
     
     # 動漫區
     path('cartoon/', all_cartoon),
-    # path('cartoon/<str:year>/', all_cartoon),
-    # path('cartoon/<str:year>&<str:get_title>/', all_cartoon),
     
     # 電影區
-    path('all_movie/', all_movies),
-    # path('all_movie/<str:year>/', all_movies),
-    
+    path('all_movie/', all_movies),    
     
     # 會員專區
     path('memberSetting/', member_manage),
@@ -52,13 +33,12 @@ urlpatterns = [
     
     # 商店
     path('general_store/', GroceryStore),
-    # path('general_store/?year={{year}}&get-title={{title}}&select-sort={{select}}/', GroceryStore),
+
     
     # 購物車
     path('cart/', cart),
     path('addtocart/<str:ctype>/', addtocart),
     path('addtocart/<str:ctype>/<int:productid>/', addtocart),
-    # path('addtocart/<str:ctype>/<int:productid>/<int:amount>/', addtocart),
     path('cartorder/', cartorder),
     path('cartok/', cartok),
     path('cartordercheck/', cartordercheck),
@@ -69,7 +49,6 @@ urlpatterns = [
     
     # 照片牆
     path('photos/', uploadFile),
-    # path('photos/<str:do')
 
     # 聯絡我們
     path('contact/', contact),
@@ -77,7 +56,7 @@ urlpatterns = [
     
     
     path('captcha/', include('captcha.urls')),
-    path('test/', test),
+
     
 ]
 

@@ -26,6 +26,7 @@ KH | 綜合商店
 			
 		</div>
 
+
 		<div>
 			<label for="item">商品種類</label>
 			<select id="item" name="item" value={{item}} class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
@@ -62,7 +63,11 @@ KH | 綜合商店
 		  	</div>
 			  <div class="card-body mycard-content">
 			    <h5 class="card-title product-title">{{ row.subject }}</h5>
+			    {% if row.info == None %}
+				<p class="card-text product-info"></p>
+			    {% else %}
 			    <p class="card-text product-info">{{ row.info }}</p>
+			    {% endif %}
 			    <p class="card-text card-price">NT$ {{ row.price }}</p>		    
 			    <!-- <a href="/addtocart/add/{{ row.id }}" class="btn btn-primary">加入購物車</a> -->
 			    <button onClick="window.location='/addtocart/add/{{ row.id }}'" class="btn btn-primary">加入購物車</button>
@@ -77,13 +82,13 @@ KH | 綜合商店
 		  <ul class="pagination justify-content-center">
 		    <li class="page-item">
 	      	{% if data.has_previous %}
-		      <a class="page-link" href="?page={{ data.previous_page_number }}" aria-label="Previous">
+		      <a class="page-link" href="?page={{ data.previous_page_number }}&p={{goodName}}&priceS={{priceS}}&priceE={{priceE}}&item={{item}}" aria-label="Previous">
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		     {% endif %}
 		    </li>
 		    {% for i in nums %}
-		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+		    	<li class="page-item"><a class="page-link" href="?page={{ forloop.counter }}&p={{goodName}}&priceS={{priceS}}&priceE={{priceE}}&item={{item}}">{{ forloop.counter }}</a></li>
 		    {% endfor %}
 		    <li class="page-item">
 		    	{% if data.has_next %}

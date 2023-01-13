@@ -64,11 +64,7 @@ def all_cartoon(request, year=None):
         elif len(year) != 0:            
             data = data.filter(year__icontains = year)
 
-                    
         
-
-    # else:
-    #     data = CarToon.objects.all().order_by('id')
     else:
         data = CarToon.objects.all().order_by('id')
     

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Contact
-from members.models import Member
+
 from django.contrib import messages
 # Create your views here.
 

@@ -208,40 +208,24 @@ def cartok(request):
         return render(request, 'cartok.html', locals())
 
     
-
-# 訂單完成後，可以做訂單查詢用的
 def cartordercheck(request):
-    orderid = request.GET.get('orderid', '')
-    customemail = request.GET.get('customemail', '')
     
-    if 'account' in request.session and 'isAlive' in request.session:
-        customemail = request.session['account']
-        orderid = request.GET.get('orderid', '')
-        if orderid == '':
-            nosearch = 1
-        else:
-            order = models.OrdersModel.objects.filter(id=orderid).first() # 抓第一筆資料
-            
-            if order == None:
-                notfound = 1
-            else:
-                details = models.DetailModel.objects.filter(dorder=order)
+    orderid = request.POST.get('orderid', '')
+    customemail = request.POST.get('customemail', '')
+    
+    if orderid == '' and customemail == '':
+        nosearch = 1
     else:
-        if orderid == '' and customemail == '':
-            nosearch = 1
+        order = models.OrdersModel.objects.filter(id=orderid).first() # 抓第一筆資料
+    
+        if order == None:
+            notfound = 1
+            messages.success(request, ('對不起，找不到您的訂單資料，請重新查詢'))
         else:
-            order = models.OrdersModel.objects.filter(id=orderid).first() # 抓第一筆資料
-            e = order.customeremail
-            if order == None:
-                notfound = 1
-            else:
-                details = models.DetailModel.objects.filter(dorder=order)
-                
-    # if order.customeremail != customemail:
-    #     messages.success(request, ('訂單Email不正確!請重新輸入'))
-    # else:
+            details = models.DetailModel.objects.filter(dorder=order)
     return render(request, 'cartordercheck.html', locals())
-        
+
+
     
 
 def myorder(request):
@@ -363,14 +347,3 @@ def ECPayCredit(request):
     except Exception as error:
         print('An exception happened: ' + str(error))
         
-# def test(request):
-#     # email = request.session['account']
-#     o = models.OrdersModel.objects.filter(id='1').first()
-#     # orderid = o.id
-#     detail = models.DetailModel.objects.filter(dorder=o)
-#     # order = models.OrdersModel.objects.get(customeremail = email)
-#     # orderid = order.id
-#     # for i in orderid:
-#     #     details = models.DetailModel.objects.filter(dorder=i)
-    
-#     return render(request, 'test.html', locals())
