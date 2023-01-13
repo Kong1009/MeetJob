@@ -264,13 +264,13 @@ def ECPayCredit(request):
     'TotalAmount': orderTotal,
     'TradeDesc': 'Kong-MeetJob訂單',
     'ItemName': title,
-    'ReturnURL': 'https://216c-118-232-167-68.ngrok.io', # 回傳網址
+    'ReturnURL': 'https://www.lccnet.com.tw/lccnet', # 回傳網址
     'ChoosePayment': 'Credit',
     'ClientBackURL': 'https://www.lccnet.com.tw/lccnet', # 回到客戶端
     'ItemURL': 'https://www.ecpay.com.tw/item_url.php',
     'Remark': '交易備註',
     'ChooseSubPayment': '',
-    'OrderResultURL': 'https://216c-118-232-167-68.ngrok.io', # 訂單完成導回此處
+    'OrderResultURL': 'https://www.lccnet.com.tw/lccnet', # 訂單完成導回此處
     'NeedExtraPaidInfo': 'Y',
     'DeviceSource': '',
     'IgnorePayment': '',
