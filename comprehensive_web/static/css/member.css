@@ -1,7 +1,10 @@
 .member-div{
 	width: 30%;
-	margin:0 auto;
-	padding: 50px 0;
+	margin:60px auto;
+	padding: 50px;
+	background: #8680F7;
+	border-radius: 10px;
+
 }
 
 
@@ -26,4 +29,8 @@
 	font-size: 30px;
 	text-align: center;
 	color: red;
+}
+
+.mb-3{
+	padding: 18px 0;
 }

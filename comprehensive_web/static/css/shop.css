@@ -10,7 +10,7 @@
 }
 .myshop_div{
 	display: flex;
-	width: 73%;
+	width: 66%;
 	margin:10px auto;
 	flex-wrap: wrap;
 	justify-content: space-around;

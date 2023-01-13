@@ -165,7 +165,7 @@ def cartok(request):
     customemail = request.POST.get('cuEmail', '')
     paytype = request.POST.get('payType')
     
-    phone_pattern = r'^09\d{2}\d{3}\d{3}'
+    phone_pattern = r'^09\d{2}-\d{3}-\d{3}'
     match = re.search(phone_pattern, customphone)
     
 

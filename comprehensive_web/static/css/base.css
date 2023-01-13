@@ -74,6 +74,17 @@ body{
 	width: 100%;
 }
 
+.logout-link{
+	background: #000;
+	border-radius: 10px;
+	color: #fff;
+	padding: 5px;
+}
+
+.logout-link:hover{
+	color: red;
+}
+
 #member_login a{
 	margin:0 10px;
 	font-size: 24px;
